@@ -1,0 +1,43 @@
+escape C-a
+definekey - hsplit
+definekey | split
+# Windows button
+definekey top s-space next
+definekey top s-Q quit
+definekey top s-c exec xterm
+definekey top s-0 select 0
+definekey top s-1 select 1
+definekey top s-2 select 2
+definekey top s-3 select 3
+definekey top s-4 select 4  
+definekey top s-5 select 5
+definekey top s-6 select 6
+definekey top s-7 select 7
+definekey top s-8 select 1
+definekey top s-9 select 9
+definekey top s-minus select -
+definekey top s-A title
+definekey top s-Tab focus
+definekey top M-s-Tab focuslast
+# other
+
+# New keys
+definekey top S-s-space prev
+definekey top F1 help root
+#definekey top F2 help top
+definekey top s-q restart
+
+newkmap windowmanager
+definekey top s-x readkey windowmanager 
+definekey windowmanager question help windowmanager
+definekey windowmanager x tmpwm xmonad
+definekey windowmanager X newwm xmonad
+definekey windowmanager a tmpwm awesome
+definekey windowmanager A newwm awesome
+definekey windowmanager f tmpwm fvwm
+definekey windowmanager m tmpwm metacity
+
+#hsplit
+#exec xterm -e vim .ratpoisonrc
+#exec xterm -e man ratpoison
+tmpwm awesome

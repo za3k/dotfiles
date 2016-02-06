@@ -1,0 +1,2 @@
+export DATEFORMAT="%c"
+alias date="date +$DATEFORMAT"

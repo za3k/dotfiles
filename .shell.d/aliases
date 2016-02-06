@@ -1,0 +1,77 @@
+alias brc='$EDITOR ~/.bashrc;source ~/.bashrc'
+alias ba='$EDITOR ~/.shell.d/aliases;source ~/.shell.d/aliases'
+alias vrc='vim ~/.vimrc'
+
+alias rm="rm -I"
+alias mv="mv -i"
+alias l="xscreensaver-command -lock || vlock"
+
+alias chromium="chromium --user-agent='Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/20.0.1132.47 Safari/536.11' --proxy-server=localhost:18000"
+alias mplayer="mplayer -af scaletempo"
+alias dzen2bottom='dzen2 -y 744 -h 24'
+alias ls='ls --group-directories-first --color=auto'
+alias seesyslog='tail /var/log/syslog'
+alias xm='$EDITOR ~/.xmonad/xmonad.hs'
+alias untargz='tar xvfz'
+alias untarbz2='tar xvjf'
+alias untarbz=untarbz2
+alias mv="mv -i"
+alias biggest="du -x -hs * .[^.]* | sort -hr | head -n"
+alias biggest_packages="pacman -Qi|awk '/^Installed Size/{print int(\$4), name} /^Name/{name=\$3}'|sort -nr | head -n"
+alias lssize="du -x -hs * .[^.]* | sort -hr | head"
+alias lss="lssize"
+alias browser="$BROWSER"
+#alias allpackages="deborphan -anp required --no-show-section"
+alias remoteadom="ssh deadtree screen adom"
+alias adomkill="killall adom;rm ~/.adom.data/.adom.prc"
+alias clearremoteadom="ssh -p 3192 -t vanceza@tron.alloscomp.com rm .adom.data/.adom.prc"
+alias arch_packages="pacman -Qie | awk '/^Name/ {pkg=\$3} /Size/ {print \$4\$5,pkg}' | sort -n"
+alias package_backup="comm -23 <(pacman -Qqe|sort) <(pacman -Qqg base base-devel|sort)"
+alias clocky="watch --interval=1 --no-title date +%c"
+alias banner="banner -Cl"
+alias minecraft="java -Xms1G -Xmx2G -jar minecraft/minecraft.jar"
+alias minecraftserver="java -Xmx1024M -Xms1024M -jar ~/minecraft/minecraft_server.jar nogui"
+alias t=task
+alias gmail="$BROWSER gmail.com"
+alias vboxme="sudo modprobe -a vboxguest vboxsf vboxvideo"
+alias backup="BANDWIDTH=1000 ~/script/backup.sh xenu:backup/tarragon.latest; ssh xenu sudo /var/local/tarragon.snapshot"
+alias inbox="~/script/list ~/journal/inbox"
+alias bc="bc -l"
+alias g="$BROWSER www.google.com?q=$1"
+alias phonevnc="vncserver -geometry 640x960 -dpi 163 :1"
+alias ps?="ps aux | grep"
+alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e's/^/ /' -e 's/-/|/'"
+alias note="template ~/journal/template/note ~/journal/notes /dev/null"
+alias failure="template ~/journal/template/failure ~/journal/failures ~/journal/inbox"
+alias up?="ping 8.8.8.8"
+alias last="history 2 | head -n1 | tr -s ' ' | cut -d ' ' -f4-"
+alias dvdplay="mplayer dvd://1 -dvd-device /dev/cdrom"
+alias getit="wget --no-clobber --continue -r --no-parent --page-requisites"
+alias archwiki="$BROWSER /usr/share/doc/arch-wiki/html/index.html"
+
+alias gs="git status"
+alias gd="git diff"
+alias bitbucket="git clone git@bitbucket.org\\"
+alias jx="java -jar /usr/lib/j/bin/j.jar"
+alias notify="$WHICHVIM -S ~/.vim/sessions/notify_session"
+alias twilio="sshfs twilio@deadtree:notify ~/remote_notify; subl ~/remote_notify"
+alias hhc="mplayer http://media.cyberleo.net:8004/hhc"
+alias leomusic="mplayer http://media.cyberleo.net:8004/music"
+alias creategh=create-github-repo
+alias :wq="echo \"That doesn't work.  This isn't vim.\""
+alias :q="echo \"That doesn't work.  This isn't vim.\""
+alias clock=dzen-clock
+alias annex-webapp="$BROWSER /shared/.git/annex/webapp.html"
+alias ip4="ifconfig | grep inet | grep -v 'inet6' | grep -v '127.0.0.1' | awk '{print \$2}' | sed 's/addr://'"
+alias ip6="ifconfig | grep 'inet6' | grep -v '::1' | awk '{print \$2}' | sed 's/addr://'"
+alias vpn="sudo openvpn /etc/openvpn/107.170.212.189-direct.ovpn"
+alias check_arxiv="ssh -t xenu tmux attach"
+alias longplayer="mplayer http://stream.spc.org:8008/longplayer"
+#alias ebooks.sync="sudo pax -u -rw -k -s '/.*\///gp' -s '/: /./gp' ~/books/**/*.{pdf,epub,txt} /mnt"
+alias newgroup="ssh nntp@deadtree sudo snnewgroup"
+alias git_backup_summary='find-git-repos ~ | while read REPO; do echo "$(git-repo-remotes "${REPO}")"; done | sort | uniq -c'
+alias git_alarm='find-git-repos ~ | while read REPO; do echo "${REPO} $(git-repo-remotes "${REPO}")"; done | egrep -i "NONE|unknown|freethenation|bitbucket"'
+alias qr_read='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so zbarcam /dev/video0'
+alias ngrok='ngrok -authtoken Pg+Qh8UnSk2mOTmBXGjJ'
+alias skype="apulse32 skype"
+alias op="ssh minecraft@xenu -t tmux attach"

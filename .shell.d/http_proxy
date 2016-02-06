@@ -1,0 +1,2 @@
+# WARC recording proxy
+http_proxy="http://localhost:18000"

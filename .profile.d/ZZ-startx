@@ -1,0 +1,3 @@
+if [ '/dev/tty1' = $(/usr/bin/tty) ]; then
+    exec startx
+fi

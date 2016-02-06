@@ -1,0 +1,11 @@
+# Shell UI
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# Window manager UI
+# Make Sun Java work with non-reparenting window managers like xmonad
+if [ -n "$DISPLAY" ]; then
+  wmname LG3D # Sun's wm for irony
+  _JAVA_AWT_WM_NONREPARENTING=1; export _JAVA_AWT_WM_NONREPARENTING
+fi

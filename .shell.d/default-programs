@@ -1,0 +1,5 @@
+# set vim to be the default editor
+#TODO: Make this work
+export WHICHVIM=vim # preferred vim (vim or gvim)
+export EDITOR=$WHICHVIM
+export BROWSER=chromium

@@ -1,0 +1,8 @@
+# Record Script
+record() {
+  history | tail -1 | awk '{ print 1+$1 }' > /tmp/record
+}
+
+replay() {
+  fc -l `cat /tmp/record` `history | tail -1 | awk '{ print $1-1 }'` | cut -d\  -f2-
+}

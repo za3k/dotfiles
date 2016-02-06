@@ -1,0 +1,2 @@
+# Super-minimal prompt
+export PS1="\W $ "

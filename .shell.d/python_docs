@@ -1,0 +1,2 @@
+# Make things like "help ('print')" work
+export PYTHONDOCS=/usr/share/doc/python2/html/

@@ -1,0 +1,6 @@
+export WIRELESS_IFACE=wlp3s0
+alias networks="sudo ip link set $WIRELESS_IFACE up; sudo iw $WIRELESS_IFACE scan | grep SSID"
+alias internet="sudo wpa_supplicant -i${WIRELESS_IFACE} -c /etc/wpa_supplicant.conf"
+alias reloadinternet="sudo systemctl restart wpa_supplicant@${WIRELESS_IFACE}"
+alias reinternet="sudo killall dhcpcd; sudo dhcpcd"
+
