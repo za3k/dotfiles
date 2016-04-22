@@ -34,7 +34,7 @@ alias minecraftserver="java -Xmx1024M -Xms1024M -jar ~/minecraft/minecraft_serve
 alias t=task
 alias gmail="$BROWSER gmail.com"
 alias vboxme="sudo modprobe -a vboxguest vboxsf vboxvideo"
-alias backup="BANDWIDTH=1000 ~/script/backup.sh xenu:backup/tarragon.latest; ssh xenu sudo /var/local/tarragon.snapshot"
+alias backup="BANDWIDTH=1000 ~/script/backup.sh burn-backup:/data/archive/tarragon.latest; ssh burn-backup sudo /var/local/tarragon.snapshot"
 alias inbox="~/script/list ~/journal/inbox"
 alias bc="bc -l"
 alias g="$BROWSER www.google.com?q=$1"
