@@ -126,7 +126,7 @@ powertimer:start()
 
 -- Create an internet indicator. + for yes, - for no. TODO: Latency or down/up time?
 myinternet = wibox.widget.textbox()
-internetcommand = "grep -q up ping /var/local/internet_up && echo 'I+ ' || echo 'I- '"
+internetcommand = "grep -q up ping /var/tmp/internet_up && echo 'I+ ' || echo 'I- '"
 internettimer = timer({ timeout = 2 })
 internettimer:connect_signal("timeout", function() 
     local f = io.popen(internetcommand, 'r')
