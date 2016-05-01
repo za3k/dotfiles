@@ -319,8 +319,8 @@ clientkeys = awful.util.table.join(
 
 
 -- Custom
-    awful.key({                   }, "Print", function () awful.util.spawn("scrot '%Y-%m-%d-%H%M%S_$wx$h.jpg' -u -e 'mv $f " .. "/home/zachary/scrots/ 2>/dev/null'") end)
-
+    awful.key({                   }, "Print", function () awful.util.spawn("scrot '%Y-%m-%d-%H%M%S_$wx$h.jpg' -u -e 'mv $f " .. "/home/zachary/scrots/ 2>/dev/null'") end),
+    awful.key({ modkey,           }, "BackSpace", function () awful.util.spawn("xscreensaver-command -lock") end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
