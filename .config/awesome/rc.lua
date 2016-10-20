@@ -319,6 +319,12 @@ clientkeys = awful.util.table.join(
 
 
 -- Custom
+   awful.key({ }, "XF86AudioRaiseVolume", function ()
+       awful.util.spawn("amixer set Master 9%+") end),
+   awful.key({ }, "XF86AudioLowerVolume", function ()
+       awful.util.spawn("amixer set Master 9%-") end),
+   awful.key({ }, "XF86AudioMute", function ()
+       awful.util.spawn("amixer sset Master toggle") end),
     awful.key({                   }, "Print", function () awful.util.spawn("scrot '%Y-%m-%d-%H%M%S_$wx$h.jpg' -u -e 'mv $f " .. "/home/zachary/scrots/ 2>/dev/null'") end),
     awful.key({ modkey,           }, "BackSpace", function () awful.util.spawn("xscreensaver-command -lock") end)
 )

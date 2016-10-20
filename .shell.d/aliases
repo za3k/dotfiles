@@ -75,3 +75,4 @@ alias qr_read='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so zbarcam /dev/video0'
 alias ngrok='ngrok -authtoken Pg+Qh8UnSk2mOTmBXGjJ'
 alias skype="apulse32 skype"
 alias op="ssh minecraft@xenu -t tmux attach"
+alias omegle="ssh -D 8080 deadtree -N & chromium --proxy-server=socks://127.0.0.1:8080"
