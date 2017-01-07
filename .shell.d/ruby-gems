@@ -1,4 +1,6 @@
 # Arch Linux
 # Include ruby gems from .gem in the path, because 'gem install' puts gets in .gem to avoid conflicting with pacman-installed gems.
-GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-export PATH=$PATH:"${GEM_HOME}/bin"
+if which ruby >/dev/null 2>/dev/null; then
+    GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+    export PATH=$PATH:"${GEM_HOME}/bin"
+fi
