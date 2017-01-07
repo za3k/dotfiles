@@ -1,0 +1,30 @@
+# IMAP
+set folder    = "imap://imap.za3k.com/"
+set spoolfile = +INBOX
+set imap_user = za3k@za3k.com
+set imap_pass = `pass za3k@za3k.com | head -n1`
+set record="=Sent"
+set postponed="=Drafts"
+
+# IMAP AND SMTP
+# activate TLS if available on the server
+set ssl_starttls=yes
+# always use SSL when connecting to a server
+set ssl_force_tls=yes
+
+# SMTP
+set smtp_url="smtp://za3k@za3k.com@smtp.za3k.com:587/"
+set from = za3k@za3k.com
+set use_from = yes
+set smtp_pass= $imap_pass
+set hostname=smtp.za3k.com
+
+# Quit without confirmation
+set quit
+# Don't ask to make a copy to an existing mailbox (such as SPAM)
+unset confirmappend
+# Version that removes 'unread'
+#macro index s "<tag-prefix><enter-command>unset resolve<enter><tag-prefix><clear-flag>N<tag-prefix><enter-command>set resolve<enter><tag-prefix><save-message>=Spam<enter>" "file as Spam"
+# Keeps 'unread' flag
+macro index s "<save-message>=Spam<enter>" "file as Spam"
+macro pager s "<save-message>=Spam<enter>" "file as Spam"
