@@ -1,3 +1,4 @@
+execute pathogen#infect()
 "Keep the same level of indentation
 set autoindent
 "Collectively, these turn tab into 4 spaces
