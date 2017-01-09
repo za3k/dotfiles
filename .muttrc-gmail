@@ -1,0 +1,28 @@
+set from = "vanceza@gmail.com"
+set realname = "Zachary Vance"
+set imap_user = "vanceza@gmail.com"
+set imap_pass = `pass show gmail/vanceza | head -n1`
+set folder="imaps://imap.gmail.com:993"
+set spoolfile = +INBOX
+mailboxes = +INBOX
+set imap_check_subscribed
+set record = "imaps://imap.gmail.com/[Google Mail]/Sent Mail"
+set postponed = "imaps://imap.gmail.com/[Google Mail]/Drafts"
+#set trash = "imaps://imap.gmail.com/[Gmail]/Trash"
+
+set header_cache =~/.mutt/cache/headers
+set message_cachedir =~/.mutt/cache/bodies
+set certificate_file =~/.mutt/certificates
+
+set smtp_url = "smtps://$imap_user:$imap_pass@smtp.gmail.com:587/"
+#set ssl_force_tls = yes
+
+bind editor <space> noop
+macro index,pager A "<enter-command>unset trash\n <delete-message>" "Gmail archive message"
+macro index,pager S "<save-message>=[Google Mail]/Spam<enter>" "mark message as spam"
+macro index,pager H "<save-message>=INBOX<enter>" "mark message as ham"
+macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index,pager ga "<change-folder>=[Google Mail]/All Mail<enter>" "Go to all mail"
+macro index,pager gs "<change-folder>=[Google Mail]/Sent Mail<enter>" "Go to sent mail"
+macro index,pager gd "<change-folder>=[Google Mail]/Drafts<enter>" "Go to drafts"
+macro index,pager gS "<change-folder>=[Google Mail]/Spam<enter>" "Go to spam"
