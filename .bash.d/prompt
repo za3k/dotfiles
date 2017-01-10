@@ -1,2 +1,10 @@
 # Super-minimal prompt
-export PS1="\W $ "
+hostname = `hostname`
+case `hostname` in
+  giant-ant)
+    export PS1="\[[35m\]\w\[[m\] \[[31m\]a\[[m\] \$ "
+    ;;
+  *)
+    export PS1="\w ${hostname} \$ "
+    ;;
+esac
