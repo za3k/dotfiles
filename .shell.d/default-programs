@@ -2,4 +2,8 @@
 #TODO: Make this work
 export WHICHVIM=vim # preferred vim (vim or gvim)
 export EDITOR=$WHICHVIM
-export BROWSER=chromium
+if which chromium 2>/dev/null >/dev/null; then
+  export BROWSER=chromium
+else
+  export BROWSER=elinks
+fi
