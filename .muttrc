@@ -23,6 +23,7 @@ set hostname=smtp.za3k.com
 set quit
 # Don't ask to make a copy to an existing mailbox (such as SPAM)
 unset confirmappend
+set trash="=Trash"
 # Version that removes 'unread'
 #macro index s "<tag-prefix><enter-command>unset resolve<enter><tag-prefix><clear-flag>N<tag-prefix><enter-command>set resolve<enter><tag-prefix><save-message>=Spam<enter>" "file as Spam"
 # Keeps 'unread' flag
