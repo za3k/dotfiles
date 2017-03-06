@@ -29,3 +29,5 @@ set trash="=Trash"
 # Keeps 'unread' flag
 macro index s "<save-message>=Spam<enter>" "file as Spam"
 macro pager s "<save-message>=Spam<enter>" "file as Spam"
+# Long url copy-paste support
+set markers=no
