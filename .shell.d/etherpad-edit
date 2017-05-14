@@ -1,0 +1,7 @@
+etherpad-edit() {
+  tmp=$(mktemp)
+  PAD=$1
+  etherpad get $PAD >$tmp
+  ${EDITOR:-vim} $tmp
+  etherpad put $PAD <$tmp
+}
