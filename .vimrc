@@ -67,4 +67,11 @@ set directory=~/.cache/vim,.
 "Disable viminfo file
 set viminfo="NONE"
 
+"Add a command to print index cards
+function LeafPrint()
+    call LeafYank()
+    call system('print.index', @0)
+endfunction
+autocmd BufRead *.index.leaves nnoremap P :call LeafPrint()<CR>
+
 syntax on
