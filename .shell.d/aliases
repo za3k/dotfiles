@@ -76,3 +76,4 @@ alias ngrok='ngrok -authtoken Pg+Qh8UnSk2mOTmBXGjJ'
 alias skype="apulse32 skype"
 alias op="ssh minecraft@xenu -t tmux attach"
 alias omegle="ssh -D 8080 deadtree -N & chromium --proxy-server=socks://127.0.0.1:8080"
+alias localhosts='nmap -sL 192.168.1.0/24 --dns-servers 192.168.1.1 | grep -v "for 192" | sed "s/Nmap scan report for //"'
