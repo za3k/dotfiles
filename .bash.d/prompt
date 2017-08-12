@@ -4,6 +4,9 @@ case "${hostname}" in
   giant-ant)
     export PS1="\[[35m\]\w\[[m\] \[[31m\]a\[[m\] \$ "
     ;;
+  giant-queen-bee)
+    export PS1="\[[35m\]\w\[[m\] \[[37m\]b\[[m\] \$ "
+    ;;
   rosemary)
     export PS1="\w \$ "
     ;;
