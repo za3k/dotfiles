@@ -3,7 +3,9 @@ if exists("g:loaded_research")
 endif
 let g:loaded_research = '0.1'
 
-autocmd BufEnter *.leaves call LeafSetUpUi()
+"autocmd BufEnter *.leaves call LeafSetUpUi()
+autocmd BufEnter *.letter.leaves call LeafSetUpLetterUi()
+autocmd BufEnter *.standard.leaves call LeafSetUpStandardUi()
 autocmd BufEnter *.index.leaves call LeafSetUpIndexUi()
 
 function LeafSetUpLetter()
@@ -12,12 +14,17 @@ function LeafSetUpLetter()
   let g:leaf_maxrows=64
 endfunction
 
+function LeafSetUpStandard()
+  let g:leaf_maxcols=80
+  let g:leaf_maxrows=54
+endfunction
+
 function LeafSetUp3x5()
   let g:leaf_maxcols=47
   let g:leaf_maxrows=17
 endfunction
 
-if !exists("g:leaves_separator")
+if !exists("g:leaf_separator")
   let g:leaf_separator="==="
 endif
 if !exists("g:leaf_size")
@@ -74,7 +81,7 @@ function LeafYank()
     let l:winview = winsaveview()
     normal ]zmz
     normal [z
-    if getline('.') == "==="
+    if getline('.') == g:leaf_separator
         normal j
     endif
     normal y'z
@@ -88,6 +95,18 @@ function LeafSetUpUi()
     set foldcolumn=1
     syn sync fromstart
     command! LeafYank :call LeafYank()
+endfunction
+
+function LeafSetUpLetterUi()
+    call LeafSetUp3x5()
+    let &colorcolumn = g:leaf_maxcols+1
+    call LeafSetUpUi()
+endfunction
+
+function LeafSetUpStandardUi()
+    call LeafSetUpStandard()
+    let &colorcolumn = g:leaf_maxcols+1
+    call LeafSetUpUi()
 endfunction
 
 function LeafSetUpIndexUi()

@@ -10,4 +10,4 @@ HISTFILESIZE=infinite
 export HISTTIMEFORMAT="%s "
 
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER \
-                   "$(history 1)" >> ~/.bash_eternal_history'
+                   "$(history 1)" >> ~/.bash_eternal_history && echo $$ $USER $(history 1) | /bin/log bash'

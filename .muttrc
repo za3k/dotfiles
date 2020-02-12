@@ -1,3 +1,6 @@
+source ~/.gpg.rc
+set mailcap_path 	= ~/.mutt/mailcap # html mail only right now
+
 # IMAP
 set folder    = "imap://imap.za3k.com/"
 set spoolfile = +INBOX
@@ -21,6 +24,7 @@ set hostname=smtp.za3k.com
 
 # Quit without confirmation
 set quit
+set delete=yes
 # Don't ask to make a copy to an existing mailbox (such as SPAM)
 unset confirmappend
 set trash="=Trash"
@@ -29,5 +33,20 @@ set trash="=Trash"
 # Keeps 'unread' flag
 macro index s "<save-message>=Spam<enter>" "file as Spam"
 macro pager s "<save-message>=Spam<enter>" "file as Spam"
+
+# Move message(s) to Spam/Ham by pressing "H"
+macro index h "<tag-prefix><enter-command>unset resolve<enter><tag-prefix><clear-flag>N<tag-prefix><enter-command>set resolve<enter><tag-prefix><save-message>=INBOX<enter>" "file as Ham"
+macro pager h "<save-message>=INBOX<enter>" "file as Ham"
+
+
 # Long url copy-paste support
 set markers=no
+
+# Enable html email
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+# GPG mail should have blank subject lines.
+#   ask-no to ask, but default to no
+#   no to not even ask, just accept it
+set abort_nosubject=no

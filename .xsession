@@ -10,5 +10,9 @@ xscreensaver -nosplash &
 xset b off
 # Caps lock should be escape
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+# Unmute mic + speaker
+amixer sset Headphone unmute 100%
+amixer sset Speaker unmute 100%
+amixer sset Master unmute 100%
 # Launch the wm (ratpoison reads .ratpoisonrc, which loads real WM)
 exec ratpoison

@@ -1,1 +1,2 @@
 PATH=$PATH:~/bin:~/script
+export IPFS_PATH=/ipfs

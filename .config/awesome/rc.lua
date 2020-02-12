@@ -395,8 +395,19 @@ clientkeys = awful.util.table.join(
         end ,
         {description = "maximize", group = "client"}),
     -- Custom
+    awful.key({ modkey,           }, ".",
+        function (c)
+            awful.util.spawn("xclip -o | xargs remote")
+        end,
+        {description = "play on media player", group = "client"}),
     awful.key({ }, "Print", function () awful.util.spawn("scrot '%Y-%m-%d-%H%M%S_$wx$h.jpg' -u -e 'mv $f " .. "/home/zachary/scrots/ 2>/dev/null'") end,
-			  {description = "Print the current window", group="client"})
+			  {description = "Print the current window", group="client"}),
+    awful.key({ modkey, "Shift"}, "s",
+        function (c)
+            c.sticky = not c.sticky
+            c:raise()
+        end,
+        {description = "toggle sticky", group = "client"})
 )
 
 -- Bind all key numbers to tags.

@@ -15,6 +15,8 @@ set backspace=indent,eol,start
 "Always show the row, column
 set ruler
 
+set encoding=utf-8
+
 
 "This splits the window when you type @s for easy reading
 "Doesn't seem to cooperate with indent folding
@@ -26,8 +28,8 @@ nnoremap <space> za
 vnoremap <space> zf
 
 "Press <F5> in insert or normal mode to insert the datetime
-:nnoremap <F5> "=strftime("%R - %b %d, %Y")<CR>P
-:inoremap <F5> <C-R>=strftime("%R - %b %d, %Y")<CR>
+:nnoremap <F5> "=strftime("%Y-%m-%d %R")<CR>P
+:inoremap <F5> <C-R>=strftime("%Y-%m-%d %R")<CR>
 
 "Python-style folding
 autocmd Syntax python set foldmethod=indent
@@ -67,11 +69,34 @@ set directory=~/.cache/vim,.
 "Disable viminfo file
 set viminfo="NONE"
 
+"Disable copy-psating with mouse
+set mouse=r
+
 "Add a command to print index cards
-function LeafPrint()
+function LeafPrintLetter()
     call LeafYank()
-    call system('print.index', @0)
+    call system('iconv -f utf-8 -t iso-8859-1//TRANSLIT | enscript -X 88591 -fDejaVuSansMono@9 -FDejaVuSansMono@9 --no-header --margins=72:0:72:72 -M Letter -o - | /usr/bin/print', @0)
 endfunction
-autocmd BufRead *.index.leaves nnoremap P :call LeafPrint()<CR>
+function LeafPrintIndex()
+    call LeafYank()
+    call system('/usr/bin/print.index', @0)
+endfunction
+autocmd BufRead *.standard.leaves nnoremap <c-p> :call LeafPrintLetter()<CR>
+autocmd BufRead *.letter.leaves nnoremap P :call LeafPrintLetter()<CR>
+autocmd BufRead *.index.leaves nnoremap P :call LeafPrintIndex()<CR>
 
 syntax on
+
+"Eric's recommended rust commands
+nnoremap <leader>gb :GBrowse<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
+
+let g:ale_linters = {
+\   'python': ['pylint'],
+\   'go': ['go vet', 'go build'],
+\}
+
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
