@@ -38,7 +38,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers..
-beautiful.init("/home/zachary/.config/awesome/theme.lua")
+beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
@@ -400,7 +400,7 @@ clientkeys = awful.util.table.join(
             awful.util.spawn("xclip -o | xargs remote")
         end,
         {description = "play on media player", group = "client"}),
-    awful.key({ }, "Print", function () awful.util.spawn("scrot '%Y-%m-%d-%H%M%S_$wx$h.jpg' -u -e 'mv $f " .. "/home/zachary/scrots/ 2>/dev/null'") end,
+    awful.key({ }, "Print", function () awful.util.spawn("scrot '%Y-%m-%d-%H%M%S_$wx$h.jpg' -u -e 'mv $f " .. os.getenv("HOME") .. "/scrots/ 2>/dev/null'") end,
 			  {description = "Print the current window", group="client"}),
     awful.key({ modkey, "Shift"}, "s",
         function (c)
