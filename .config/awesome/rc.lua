@@ -6,6 +6,7 @@ require("awful.autofocus")
 local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
+local vicious = require("vicious")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -108,29 +109,43 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock(" %a %b %d, %I:%M %p ")
+mytextclock = awful.widget.textclock("<span foreground=\"gray\">%a %F</span>, <span foreground=\"lightgreen\">%I:%M %p</span> ")
 
 -- Create a power meter
-powertimer = timer({ timeout = 3 })
-mypowermeter = wibox.widget.textbox()
-powercommand = "acpi -b | sed -re 's/^.* (\\w+ing),.*[^0-9]([0-9]+%).*$/\\2\\1/' | sed -e 's/Charging/+/' | sed -e 's/Discharging/-/'"
-powertimer:connect_signal("timeout", function() 
-    local f = io.popen(powercommand, 'r')
-    local text = f:read('*a')
-    f:close()
-    mypowermeter:set_text(text) 
-end)
-powertimer:start()
+--powertimer = timer({ timeout = 3 })
+--mypowermeter = wibox.widget.textbox()
+--powercommand = "acpi -b | sed -re 's/^.* (\\w+ing),.*[^0-9]([0-9]+%).*$/\\2\\1/' | sed -e 's/Charging/+/' | sed -e 's/Discharging/-/'"
+--powertimer:connect_signal("timeout", function() 
+--    local f = io.popen(powercommand, 'r')
+--    local text = f:read('*a')
+--    f:close()
+--    mypowermeter:set_text(text) 
+--end)
+--powertimer:start()
+powerformat = function (widget, args)
+  if args[2] > 25 then
+    return ("<span foreground=\"grey\"> %02d</span>%%"):format(args[2])
+  else
+    return ("<span foreground=\"red\"> %02d</span>%%"):format(args[2])
+  end
+end
+powerwidget = wibox.widget.textbox()
+vicious.register(powerwidget, vicious.widgets.bat, powerformat, 61, "BAT0")
+powerwidget2 = wibox.widget.textbox()
+vicious.register(powerwidget2, vicious.widgets.bat, powerformat, 61, "BAT1")
+
+--datewidget = wibox.widget.textbox()
+--vicious.register(datewidget, vicious.widgets.date, "$2", 10, "Bfjkd")
 
 -- Create an internet indicator. + for yes, - for no. TODO: Latency or down/up time?
 myinternet = wibox.widget.textbox()
-internetcommand = "grep -q up ping /var/tmp/internet_up && echo 'I+ ' || echo 'I- '"
+internetcommand = "grep -q up ping /var/tmp/internet_up && echo ' <span foreground=\"gray\">I+</span>' || echo ' <span foreground=\"red\">I-</span>'"
 internettimer = timer({ timeout = 2 })
 internettimer:connect_signal("timeout", function() 
     local f = io.popen(internetcommand, 'r')
     local text = f:read('*a')
     f:close()
-    myinternet:set_text(text) 
+    myinternet:set_markup(text) 
 end)
 internettimer:start()
 
@@ -234,7 +249,9 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
             mytextclock,
 			myinternet,
-			mypowermeter,
+			--mypowermeter,
+            powerwidget,
+            powerwidget2,
             s.mylayoutbox,
         },
     }
