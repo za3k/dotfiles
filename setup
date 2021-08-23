@@ -2,4 +2,4 @@
 DOTFILES="$(realpath "$(dirname $0)")"
 mkdir -p "${HOME}/.config"
 find "${DOTFILES}/.config" -mindepth 1 -maxdepth 1 -print0 | xargs -0 -I{} -- ln -s {} "${HOME}/.config"
-find "${DOTFILES}" -mindepth 1 -maxdepth 1 \! -name .git \! -name .config \! -name setup -print0 | xargs -0 -I{} -- ln -s {} "${HOME}"
+find "${DOTFILES}" -mindepth 1 -maxdepth 1 \! -name .git \! -name .config \! -name setup \! -name lint \! -name .gitignore -print0 | xargs -0 -I{} -- ln -s {} "${HOME}"

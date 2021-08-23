@@ -27,22 +27,7 @@ def same_contents(x, y):
         pass
 
 home = os.environ["HOME"]
-dotfiles_dir = os.path.join(home, "dotfiles")
-program_dir = os.path.dirname(os.path.realpath(sys.argv[0]))
-
-if not os.path.exists(dotfiles_dir):
-    fail("Expected dotfile directory does not exist: {}".format(dotfiles_dir))
-elif os.path.islink(dotfiles_dir):
-    warn("Expected dotfile directory is a symlink: {}".format(dotfiles_dir))
-elif not os.path.isdir(dotfiles_dir):
-    fail("Expected dotfile directory is not a directory: {}".format(dotfiles_dir))
-else:
-    ok("Dotfile directory exists: {}".format(dotfiles_dir))
-
-if dotfiles_dir != program_dir:
-    warn("Program 'lint' should be inside the dotfile dir ({}), not: {}".format(dotfiles_dir, program_dir))
-else:
-    ok("Lint is being run from dotfiles dir")
+dotfiles_dir = os.path.dirname(os.path.realpath(sys.argv[0]))
 
 def lint_dotfile(dotfile_path, actual_path, unexpected_ok=False):
     assert os.path.lexists(dotfile_path) or os.path.lexists(actual_path), [dotfile_path, actual_path]
