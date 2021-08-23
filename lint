@@ -17,10 +17,10 @@ def ok(msg):
 def done():
     global problems
     if problems == 0:
-        print("ok.")#, file=sys.stderr)
+        print("ok.", file=sys.stderr)
         sys.exit(0)
     else:
-        print("{} problems found".format(problems))
+        print("dotfile linter: {} problems found".format(problems))
         sys.exit(2)
 def same_contents(x, y):
     if os.path.isfile(x) and os.path.isfile(y):
