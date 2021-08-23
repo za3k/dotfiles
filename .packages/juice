@@ -1,0 +1,46 @@
+# Initial list made using: comm -23 <(pacman -Qqe|sort) <(pacman -Qqg base-devel xorg|sort)
+# *base means base is a group
+
+# Boot at all
+base            
+linux
+linux-firmware
+grub
+
+# Hardware
+intel-ucode     # Intel microcode fix, run after boot. Fixes some hardware bugs, especially with mesa graphics on T460s (screen locking up).
+
+# Wireless
+wpa_supplicant  # Needed to connect to wireless
+
+# AUR build ( put early on the list so we can build everything else)
+yay-git         # Automatically grab stuff from the AUR
+*base-devel      # Required to build most things from the AUR
+
+# Minimal reasonable programs
+man-db
+git
+nano
+openssh
+rsync
+tmux
+vim
+wget
+zsh
+
+# X Windows
+*xorg            # Involves selecting drivers. I picked everything nvidia, plus dejavu fonts
+xorg-xinit
+xterm
+
+# Window manager
+awesome
+vicious
+wmname          # Fake being a different WM for compatibility with some programs. Sourced in profile.
+
+# Games
+multimc-bin
+
+# Steam games
+steam
+steam-fonts
