@@ -1,3 +1,5 @@
+export XAUTHORITY=/tmp/XAuthority
+
 case `hostname` in
     rosemary)
         echo 1 | sudo /usr/bin/tee /sys/module/snd_hda_intel/parameters/power_save >/dev/null
