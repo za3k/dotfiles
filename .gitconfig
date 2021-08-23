@@ -1,0 +1,12 @@
+[user]
+	name = Zachary Vance
+	email = za3k@za3k.com
+[color]
+    ui = true
+[push]
+	default = nothing
+[sendemail]
+    smtpEncryption = tls
+    smtpServer = smtp.za3k.com
+    smtpUser = za3k@za3k.com
+    smtpServerPort = 587
