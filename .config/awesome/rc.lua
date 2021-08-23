@@ -417,8 +417,8 @@ clientkeys = awful.util.table.join(
             awful.util.spawn("xclip -o | xargs remote")
         end,
         {description = "play on media player", group = "client"}),
-    awful.key({ }, "Print", function () awful.util.spawn("scrot '%Y-%m-%d-%H%M%S_$wx$h.jpg' -u -e 'mv $f " .. os.getenv("HOME") .. "/scrots/ 2>/dev/null'") end,
-			  {description = "Print the current window", group="client"}),
+    --awful.key({ }, "Print", function () awful.util.spawn("scrot '%Y-%m-%d-%H%M%S_$wx$h.jpg' -u -e 'mv $f " .. os.getenv("HOME") .. "/scrots/ 2>/dev/null'") end,
+	--		  {description = "Print the current window", group="client"}),
     awful.key({ modkey, "Shift"}, "s",
         function (c)
             c.sticky = not c.sticky
