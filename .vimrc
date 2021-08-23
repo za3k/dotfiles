@@ -105,3 +105,4 @@ let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
 let g:ycm_allow_changing_updatetime = 0
+"let g:netrw_dirhistmax=0
