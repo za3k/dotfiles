@@ -1,11 +1,11 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.34 for zachary on Sat Jan 30 20:23:58 2016.
-# http://www.jwz.org/xscreensaver/
+# Written by xscreensaver-demo 5.37 for zachary on Fri Oct 27 20:50:49 2017.
+# https://www.jwz.org/xscreensaver/
 
-timeout:	1:00:00
+timeout:	0:40:00
 cycle:		0:10:00
 lock:		True
-lockTimeout:	0:00:00
+lockTimeout:	0:01:00
 passwdTimeout:	0:00:30
 visualID:	default
 installColormap:    True
@@ -34,7 +34,7 @@ grabVideoFrames:    False
 chooseRandomImages: False
 imageDirectory:	
 
-mode:		off
+mode:		blank
 selected:	-1
 
 textMode:	file
@@ -259,6 +259,17 @@ programs:								      \
   GL: 				winduprobot -root			    \n\
   GL: 				splitflap -root				    \n\
 				testx11 -root				    \n\
+  GL: 				cubestack -root				    \n\
+  GL: 				cubetwist -root				    \n\
+  GL: 				discoball -root				    \n\
+  GL: 				dymaxionmap -root			    \n\
+  GL: 				energystream -root			    \n\
+  GL: 				hexstrut -root				    \n\
+  GL: 				hydrostat -root				    \n\
+  GL: 				raverhoop -root				    \n\
+  GL: 				splodesic -root				    \n\
+  GL: 				unicrud -root				    \n\
+  GL: 				vigilance -root				    \n\
 
 
 pointerPollTime:    0:00:05

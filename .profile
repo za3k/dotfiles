@@ -5,7 +5,7 @@ case `hostname` in
 esac
 
 case `hostname` in
-    rosemary|juice)
+    rosemary)
         if [[ '/dev/tty1' = $(/usr/bin/tty) ]]; then
             which startx >/dev/null 2>/dev/null && exec startx
         fi

@@ -72,6 +72,9 @@ set viminfo="NONE"
 "Disable copy-psating with mouse
 set mouse=r
 
+"Make word wrap respect indents
+set bri
+
 "Add a command to print index cards
 function LeafPrintLetter()
     call LeafYank()
@@ -88,15 +91,17 @@ autocmd BufRead *.index.leaves nnoremap P :call LeafPrintIndex()<CR>
 syntax on
 
 "Eric's recommended rust commands
-nnoremap <leader>gb :GBrowse<CR>
-nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
+"nnoremap <leader>gb :GBrowse<CR>
+"nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 
 let g:ale_linters = {
 \   'python': ['pylint'],
 \   'go': ['go vet', 'go build'],
+\   'javascript': ['eslint'],
 \}
 
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
+let g:ycm_allow_changing_updatetime = 0

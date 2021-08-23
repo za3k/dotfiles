@@ -123,10 +123,10 @@ mytextclock = awful.widget.textclock("<span foreground=\"gray\">%a %F</span>, <s
 --end)
 --powertimer:start()
 powerformat = function (widget, args)
-  if args[2] > 25 then
-    return ("<span foreground=\"grey\"> %02d</span>%%"):format(args[2])
-  else
+  if args[2] <= 25 and args[1] == "-" then
     return ("<span foreground=\"red\"> %02d</span>%%"):format(args[2])
+  else
+    return ("<span foreground=\"grey\"> %02d</span>%%"):format(args[2])
   end
 end
 powerwidget = wibox.widget.textbox()

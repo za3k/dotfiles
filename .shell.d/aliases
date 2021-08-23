@@ -38,7 +38,7 @@ alias minecraftserver="java -Xmx1024M -Xms1024M -jar ~/minecraft/minecraft_serve
 alias t=task
 alias gmail="$BROWSER gmail.com"
 alias vboxme="sudo modprobe -a vboxguest vboxsf vboxvideo"
-alias backup="BANDWIDTH=1000 sudo /var/local/backup.sh"
+alias backup="BANDWIDTH=1000 sudo /var/local/backup.sh manual"
 alias inbox="~/script/list ~/journal/inbox"
 alias bc="bc -l"
 alias g="$BROWSER www.google.com?q=$1"
@@ -89,3 +89,12 @@ alias journal='$EDITOR ~/documents/journal/`\date "+%Y-%m-%d"`.txt'
 alias sleep?="\summarize_activity 30 10 0 0 SLEEP1"
 alias summarize_activity="summarize_activity 30 10"
 alias slay="wine c:/Program\ Files\ \(x86\)/Slay/Slay.exe"
+alias watch-land=watch-lan
+alias timelog="python3 ~/journal-print/timelog.py | grep -P -i"
+alias ctimelog="python3 ~/journal-print/timelog.py | grep -P -i -c"
+alias ftimelog="python3 ~/journal-print/timelog.py | fgrep -i"
+alias units="units -H ''"
+alias transcribe="cd ~/log-book-03 && ~/transcribe/transcribe.py &"
+alias less="less -R"
+alias print="ssh invent lp"
+alias ifmud="telnet ifmud.port4000.com 4000"
