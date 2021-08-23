@@ -1,0 +1,92 @@
+#!/usr/bin/env python3
+"""Find dotfiles which are NOT checked into the 'dotfiles' folder, don't match, etc."""
+import os, sys
+
+problems = 0
+def fail(msg):
+    global problems
+    problems += 1
+    print("FATAL", msg)
+    sys.exit(1)
+def warn(msg):
+    global problems
+    problems += 1
+    print("WARN", msg)
+def ok(msg):
+    print("OK", msg, file=sys.stderr)
+def done():
+    global problems
+    if problems == 0:
+        print("ok.")
+        sys.exit(0)
+    else:
+        print("{} problems found".format(problems))
+        sys.exit(2)
+def same_contents(x, y):
+    if os.path.isfile(x) and os.path.isfile(y):
+        pass
+
+home = os.environ["HOME"]
+dotfiles_dir = os.path.join(home, "dotfiles")
+program_dir = os.path.dirname(os.path.realpath(sys.argv[0]))
+
+if not os.path.exists(dotfiles_dir):
+    fail("Expected dotfile directory does not exist: {}".format(dotfiles_dir))
+elif os.path.islink(dotfiles_dir):
+    warn("Expected dotfile directory is a symlink: {}".format(dotfiles_dir))
+elif not os.path.isdir(dotfiles_dir):
+    fail("Expected dotfile directory is not a directory: {}".format(dotfiles_dir))
+else:
+    ok("Dotfile directory exists: {}".format(dotfiles_dir))
+
+if dotfiles_dir != program_dir:
+    warn("Program 'lint' should be inside the dotfile dir ({}), not: {}".format(dotfiles_dir, program_dir))
+else:
+    ok("Lint is being run from dotfiles dir")
+
+def lint_dotfile(dotfile_path, actual_path, unexpected_ok=False):
+    assert os.path.lexists(dotfile_path) or os.path.lexists(actual_path), [dotfile_path, actual_path]
+    if os.path.lexists(dotfile_path) and not os.path.lexists(actual_path):
+        warn("Dotfile missing: {}".format(actual_path))
+    elif not os.path.lexists(dotfile_path) and os.path.lexists(actual_path):
+        if not unexpected_ok:
+            warn("Unexpected dotfile: {}".format(actual_path))
+    elif os.path.islink(actual_path):
+        if os.path.samefile(actual_path, dotfile_path):
+            ok(actual_path)
+        else:
+            warn("Dotfile link is wrong: {}".format(actual_path))
+    elif os.path.isfile(actual_path) or os.path.isdir(actual_path):
+        warn("Conflicting dotfile: {}".format(actual_path))
+    else:
+        warn("Expected dotfile is some strange filetype: {}".format(actual_path))
+def dotfiles_in(d):
+    return [x for x in os.listdir(d) if x.startswith(".")]
+
+RECURSIVE_DIRS = [".config"]
+BLACKLIST = [".git", ".gitignore"] + RECURSIVE_DIRS
+actual_files = dotfiles_in(home)
+expected_files = dotfiles_in(dotfiles_dir)
+
+for f in sorted(set(actual_files + expected_files) - set(BLACKLIST)):
+    dotfile_path = os.path.join(dotfiles_dir, f)
+    actual_path = os.path.join(home, f)
+    lint_dotfile(dotfile_path, actual_path)
+       
+for blf in [".git", ".gitignore"]:
+    actual_path = os.path.join(home, blf)
+    if os.path.exists(actual_path):
+        warn("Unexpected dotfile: {}".format(actual_path))
+
+for d in RECURSIVE_DIRS:
+    home_d = os.path.join(home, d)
+    dotfile_d = os.path.join(dotfiles_dir, d)
+    if os.path.exists(home_d):
+        actual_files = os.listdir(home_d)
+        expected_files = os.listdir(dotfile_d)
+        for f in sorted(set(actual_files + expected_files)):
+            dotfile_path = os.path.join(dotfile_d, f)
+            actual_path = os.path.join(home_d, f)
+            lint_dotfile(dotfile_path, actual_path,  unexpected_ok=True)
+done()
+
