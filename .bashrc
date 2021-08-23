@@ -10,8 +10,8 @@ if [ -e /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # == Record Script
-record() { history | tail -1 | awk '{ print 1+$1 }' > /tmp/record }
-replay() { fc -l `cat /tmp/record` `history | tail -1 | awk '{ print $1-1 }'` | cut -d\  -f2- }
+record() { history | tail -1 | awk '{ print 1+$1 }' > /tmp/record; }
+replay() { fc -l `cat /tmp/record` `history | tail -1 | awk '{ print $1-1 }'` | cut -d\  -f2-; }
 
 # == Super-minimal prompt
 hostname=`cat /etc/hostname`
@@ -26,7 +26,7 @@ case "${hostname}" in
     export PS1="\w \$ "
     ;;
   *)
-    export PS1="\w ${hostname} \$ "
+    export PS1="\h:\w \$ "
     ;;
 esac
 
