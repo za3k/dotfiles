@@ -1,1 +1,1 @@
-export NPM_CONFIG_USERCONFIG=~/.config/npm/npmrc
+[ -z "$XDG_DATA_HOME" ] && XDG_DATA_HOME="$HOME/.local/share"

@@ -17,7 +17,7 @@ def ok(msg):
 def done():
     global problems
     if problems == 0:
-        print("ok.")
+        print("ok.")#, file=sys.stderr)
         sys.exit(0)
     else:
         print("{} problems found".format(problems))
@@ -49,8 +49,13 @@ def dotfiles_in(d):
     return [x for x in os.listdir(d) if x.startswith(".")]
 
 RECURSIVE_DIRS = [".config"]
-STATE_GRANDFATHERS = [".Xauthority"]
-BLACKLIST = [".git", ".gitignore"] + RECURSIVE_DIRS
+STATE_GRANDFATHERS = [
+    ".Xauthority", # possibly made by startx
+    ".pki", # probably made by the 'nss' library. should respect XDG but doesn't
+    ".cache", # should always stay here
+    ".local", # should always stay here but might make sense to look inside?
+]
+BLACKLIST = [".git", ".gitignore", ".ssh"] + RECURSIVE_DIRS + [os.path.basename(dotfiles_dir)]
 actual_files = dotfiles_in(home)
 expected_files = dotfiles_in(dotfiles_dir)
 

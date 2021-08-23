@@ -1,0 +1,2 @@
+# Don't write to my home folder
+export XAUTHORITY=/tmp/XAuthority
