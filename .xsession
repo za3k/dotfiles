@@ -8,7 +8,7 @@ xscreensaver -nosplash &
 xset b off
 # Computer-specific hardware settings for X windows
 if which dmidecode >/dev/null 2>/dev/null; then
-    system=`sudo dmidecode -s system-family 2>/dev/null`
+    system=`sudo -T 1 dmidecode -s system-family 2>/dev/null` # Sudo prompting for a password causes X start to hang
     case "$system" in
         "ThinkPad T460s")
             # T460s stuff
@@ -32,8 +32,8 @@ xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 # Unmute mic + speaker
 if which amixer >/dev/null 2>/dev/null; then
     amixer sset Headphone unmute 100%
-    amixer sset Speaker unmute 100%
-    amixer sset Master unmute 100%
+    #amixer sset Speaker unmute 100%
+    #amixer sset Master unmute 100%
 fi
 # Launch the wm
 exec awesome
