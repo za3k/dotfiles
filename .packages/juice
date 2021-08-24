@@ -21,6 +21,7 @@ yay-git         # Automatically grab stuff from the AUR
 man-db
 git
 nano
+ntp
 openssh
 rsync
 tmux
