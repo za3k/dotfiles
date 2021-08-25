@@ -1,6 +1,8 @@
 #!/bin/sh
 DOTFILES="$(realpath "$(dirname $0)")"
 mkdir -p "${HOME}/.config"
+mkdir -p "${HOME}/.local/share"
 # -sf forcibly deletes existing files. you have been warned!
 find "${DOTFILES}/.config" -mindepth 1 -maxdepth 1 -print0 | xargs -0 -I{} -- ln -sf {} "${HOME}/.config"
-find "${DOTFILES}" -mindepth 1 -maxdepth 1 \! -name .git \! -name .config \! -name setup \! -name lint \! -name .gitignore -print0 | xargs -0 -I{} -- ln -sf {} "${HOME}"
+find "${DOTFILES}/.local/share" -mindepth 1 -maxdepth 1 -print0 | xargs -0 -I{} -- ln -sf {} "${HOME}/.local/share"
+find "${DOTFILES}" -mindepth 1 -maxdepth 1 \! -name .git \! -name .config \! -name setup \! -name lint \! -name .gitignore \! -name .local -print0 | xargs -0 -I{} -- ln -sf {} "${HOME}"
