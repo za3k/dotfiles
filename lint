@@ -37,9 +37,12 @@ def lint_dotfile(dotfile_path, actual_path, unexpected_ok=False):
         if not (unexpected_ok or os.path.basename(actual_path) in STATE_GRANDFATHERS):
             warn("Unexpected dotfile: {}".format(actual_path))
     elif os.path.islink(actual_path):
-        if os.path.samefile(actual_path, dotfile_path):
+        canon = os.readlink(actual_path)
+        #canon = os.path.realpath(pointed)
+        if canon == dotfile_path: # All this weird stuff is to deal with dangling symlinks, ex. .steampath
             ok(actual_path)
         else:
+            print([actual_path, pointed, canon, dotfile_path, canon==dotfile_path])
             warn("Dotfile link is wrong: {}".format(actual_path))
     elif os.path.isfile(actual_path) or os.path.isdir(actual_path):
         warn("Conflicting dotfile: {}".format(actual_path))
@@ -50,10 +53,15 @@ def dotfiles_in(d):
 
 RECURSIVE_DIRS = [".config"]
 STATE_GRANDFATHERS = [
-    ".Xauthority", # possibly made by startx
-    ".pki", # probably made by the 'nss' library. should respect XDG but doesn't
     ".cache", # should always stay here
     ".local", # should always stay here but might make sense to look inside?
+
+    # Even though this list will become long, it causes me to decide "yes, this should be in dotfiles" vs "no, it should not"--so keep maintaining. Don't try too hard to move to XDG though.
+    ".pki", # probably made by the 'nss' library. should respect XDG but doesn't
+    ".oracle_jre_usage", # Not sure how this is being made. Can safely be deleted.
+    ".pulse-cookie", # Seems to be made by steam. Transient.
+    ".python_history", # Made when you run "python" interactively--readline history. this is ok.
+    ".Xauthority", # possibly made by startx
 ]
 BLACKLIST = [".git", ".gitignore", ".ssh"] + RECURSIVE_DIRS + [os.path.basename(dotfiles_dir)]
 actual_files = dotfiles_in(home)

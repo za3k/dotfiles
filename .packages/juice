@@ -1,5 +1,5 @@
-# Initial list made using: comm -23 <(pacman -Qqe|sort) <(pacman -Qqg base-devel xorg|sort)
-# *base means base is a group
+# *base-devel means base-devel is a group
+# +yay means yay is an AUR package
 
 # Boot at all
 base            
@@ -14,8 +14,8 @@ intel-ucode     # Intel microcode fix, run after boot. Fixes some hardware bugs,
 wpa_supplicant  # Needed to connect to wireless
 
 # AUR build ( put early on the list so we can build everything else)
-yay-git         # Automatically grab stuff from the AUR
-*base-devel      # Required to build most things from the AUR
++yay             # Automatically grab stuff from the AUR
+*base-devel     # Required to build most things from the AUR
 
 # Minimal reasonable programs
 man-db
@@ -30,9 +30,14 @@ wget
 zsh
 
 # X Windows
-*xorg            # Involves selecting drivers. I picked everything nvidia, plus dejavu fonts
+# xorg selected drivers. installed explcitly as a non-interactive way to set options.
+lib32-vulkan-radeon
+vulkan-radeon
+ttf-dejavu
+# main packages
 xorg-xinit
 xterm
+*xorg            # Involves selecting drivers. I picked everything nvidia, plus dejavu fonts
 
 # Window manager
 awesome
@@ -40,8 +45,14 @@ vicious
 wmname          # Fake being a different WM for compatibility with some programs. Sourced in profile.
 
 # Games
-multimc-bin
++multimc-bin
 
 # Steam games
 steam
-steam-fonts
++steam-fonts
+
+# Reproducible distro
+arch-install-scripts    # arch-chroot and pacstrap
+
+#duplicity # rdiffdir
+#rdiff-backup

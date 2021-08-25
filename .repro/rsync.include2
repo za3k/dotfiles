@@ -1,0 +1,21 @@
+# The rule here is that these should be STATEFUL (regularly changed) and copied over
+# Rsync format: file is parsed from top to bottom, first match wins. Remember a directory has to match for its children to even be considered.
+
++ /home
++ /home/zachary
++ /home/zachary/.local
++ /home/zachary/.local/share
+/home/zachary/.local/share/zsh
+- /home/zachary/.local/share/*
+- /home/zachary/.local/*
+/home/zachary/.ssh
+/home/zachary/.ssh/known_hosts
+- /home/zachary/.ssh/*
+- /home/zachary/*
+- /home/*
+
+/root
+/root/.bash_history
+- /root/*
+
+- /*

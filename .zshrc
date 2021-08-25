@@ -5,6 +5,7 @@ fi
 
 # Zsh specific stuff
 bindkey -e # Emacs mode
+setopt interactivecomments
 
 # == History
 export HISTSIZE=10000000

@@ -1,0 +1,50 @@
+# The rule here is that these should be STATIC (not automatically updated) and copied over.
+# Rsync format: file is parsed from top to bottom, first match wins. Remember a directory has to match for its children to even be considered.
+
+#/boot
++ /etc
++ /etc/default
+/etc/default/grub
+- /etc/default/*
+/etc/fstab
+/etc/hosts
+/etc/hostname
+/etc/locale.gen
+/etc/locale.conf
+/etc/localtime
+/etc/mkinitcpio.conf
+/etc/pacman.conf
+/etc/resolv.conf
++ /etc/ssh
+/etc/ssh/sshd_config
+/etc/ssh/ssh_host*
+- /etc/ssh/*
+/etc/sudoers
++ /etc/systemd
++ /etc/systemd/network
+/etc/systemd/network/e0.network
+- /etc/systemd/network/*
++ /etc/systemd/system/
+- /etc/systemd/*
++ /etc/udev
++ /etc/udev/rules.d
+/etc/udev/rules.d/10-network.rules
+- /etc/udev/rules.d/*
+- /etc/udev/*
+- /etc/*
+
+
++ /home
++ /home/zachary
+/home/zachary/.dot
+/home/zachary/.ssh
+- /home/zachary/.ssh/known_hosts
+- /home/zachary/*
+- /home/*
+
++ /root
+/root/.ssh
+/root/.vimrc
+- /root/*
+
+- /*
