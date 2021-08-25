@@ -1,0 +1,64 @@
+#!/bin/sh
+# Recommended to work in a tmpfs
+# mount -t tmpfs tmpfs ${CHROOT}
+# OR in a bare directory if we run out of RAM
+# mount --bind ${CHROOT} ${CHROOT} # Required to make arch-chroot work
+# TODO: Check that the option passed in is a (single) mountpoint
+
+[ $# -eq 1 ] || {
+  echo "Usage: repro ROOT"
+  exit 1
+}
+CHROOT="$1"
+
+
+# == Install non-AUR packages
+# pacstrap -c uses local cache, which is less reproducible but faster and puts less load on the central servers
+# 3GB install without cache
+cut -d"#" -f1 ~/.packages/juice | grep -v "^\\+" | grep -v "^\\*" | tr -d '+*' | sudo xargs pacstrap -c ${CHROOT}
+# Install groups SECOND so the packages in them are not marked as explicitly installed... it's dumb I know
+cut -d"#" -f1 ~/.packages/juice | grep "^\\*" | tr -d '+*' | sudo xargs pacstrap -c ${CHROOT} 
+# +1GB cache. Remember to run pacman -Sc
+sudo rsync -a /var/cache/pacman/ ${CHROOT}/var/cache/pacman/
+
+# == Pre-filecopy tasks
+# At least one non-root user is required for makepkg
+sudo arch-chroot ${CHROOT} bash -c "useradd -m -G wheel -s /bin/zsh zachary"
+echo "zachary:changeme" | sudo arch-chroot ${CHROOT} chpasswd
+sudo arch-chroot ${CHROOT} bash -c 'echo "%wheel ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers'
+# sudo arch-chroot ${CHROOT} passwd
+
+# == Copy Files
+# Copy key files. TODO: maybe store as patches against the pacman version for higher semantic content, and/or store the originals.
+sudo rsync -vax --size-only --include-from=rsync.include / ${CHROOT}
+sudo rsync -vax --size-only --include-from=rsync.include2 / ${CHROOT}
+sudo arch-chroot ${CHROOT} chattr +i /etc/resolv.conf # move to rsync command
+
+# --- Stuff obsoleted by copying files ---
+# Enable multilib
+# sudo cp {,${CHROOT}}/etc/pacman.conf
+# Set locale
+# sudo arch-chroot ${CHROOT} bash -c 'sed "s/#en_US.UTF-8/en_US.UTF-8/" -i /etc/locale.gen'
+# sudo arch-chroot ${CHROOT} bash -c 'echo "LANG=en_US.UTF-8" >/etc/locale.conf'
+# Set hostname
+# sudo arch-chroot ${CHROOT} bash -c 'echo "juice" >/etc/hostname'
+# sudo arch-chroot ${CHROOT} bash -c 'echo -e "127.0.0.1 localhost\n::1 localhost\n127.0.1.1 juice">/etc/hosts'
+
+# == Post-filecopy tasks
+# Set locale
+sudo arch-chroot ${CHROOT} locale-gen
+sudo arch-chroot ${CHROOT} sudo -u zachary sh -c "cd /home/zachary && git clone git@github.com:za3k/dotfiles.git .dot && .dot/setup"
+
+# == Install AUR packages
+# Instal yay
+sudo arch-chroot ${CHROOT} sudo -u zachary bash -c "cd /tmp && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm"
+# Install pacman packages (only AUR stuff)
+cut -d"#" -f1 ~/.packages/juice | grep "^\\+" | tr -d '+*' | grep -v "^yay" | sudo xargs arch-chroot ${CHROOT} sudo -u zachary yay --needed --noconfirm -S
+
+# == See how well it worked
+
+# 2 seconds to run
+#sudo rsync -rlDgxim --info=flist0,stats2 --size-only --exclude-from=rsync.exclude --dry-run / ${CHROOT}
+#sudo rsync -rlDgxv --info=flist0,stats2 --size-only --exclude-from=rsync.exclude --dry-run / ${CHROOT} | grep "Total transferred file size" | cut -d":" -f2 | tr -d ",bytes "
+#sudo rsync -vrpgoDlx --size-only --exclude-from=rsync.exclude --only-write-batch=diff / ${CHROOT} && du -sh diff --apparent-size
+

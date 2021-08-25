@@ -1,0 +1,67 @@
+# The rule here is that these should be STATEFUL (regularly changed by the computer) and can be safely deleted or replaced
+# Rsync format: file is parsed from top to bottom, first match wins. Remember a directory has to match for its children to even be considered.
+
+# Deliberately not copied
+# 67G
+/var/steam
+
+# Log directories
+# 25M
+/var/log
+
+# Cache directories
+# 87M
+/home/zachary/.cache
+/root/.cache
+# 2.5M
+/var/cache
+
+# Temp directories
+#/home/zachary/tmp
+#/root/tmp
+/tmp
+/var/tmp
+
+# Shadow files
+/etc/*-
+/etc/shadow
+/etc/passwd
+/etc/group
+
+# 1.8M
+# /home/zachary
+/home/zachary/.dot
+
+# Lot of horrible tiny garbage
+# Bugs. Some hooks aren't getting run, but we don't care
+/usr/share/info/dir
+# Misc cached garbage
+/root/.viminfo
+/root/.lesshst
+/home/zachary/.local/share/xorg
+/home/zachary/.pki/nssdb
+/home/zachary/.oracle_jre_usage
+/home/zachary/.pulse-cookie
+/home/zachary/.python_history
+/home/zachary/.config/cef_user_data
+/home/zachary/.config/unity3d
+# Non-reproducible because they include build times
+/var/lib/pacman/local/*/desc
+/var/lib/pacman/local/*/mtree
+/var/.updated
+/etc/.updated
+/etc/adjtime
+# Non-reproducible because they are random
+/var/lib/systemd/random-seed
+# Non-reproducible state about running system
+# Kind of ephemeral but it's adjusted slowly. Could be worth copying.
+/var/lib/ntp/ntp.drift
+/var/lib/systemd/rfkill
+# When systemd cron jobs last ran
+/var/lib/systemd/timers
+
+# Empty directories
+#/lost+found
+#/repro
+#/var/lib/systemd/linger
+#/root/.cache
