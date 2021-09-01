@@ -15,5 +15,4 @@ case "$hostname" in
         ;;
 esac
 
-[ -x ~/.dot/lint ] && ~/.dot/lint 2>/dev/null
 [ -x ~/.packages/lint ] && ~/.packages/lint 2>/dev/null
