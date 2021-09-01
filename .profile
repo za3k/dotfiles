@@ -15,4 +15,4 @@ case "$hostname" in
         ;;
 esac
 
-[ -x ~/.packages/lint ] && ~/.packages/lint 2>/dev/null
+[ -x ~/.projects/za3kstrap/za3kstrap ] && ~/.projects/za3kstrap/za3kstrap lint-packages
