@@ -200,6 +200,7 @@ lrzip   # Long-range rzip. Only program that can do deduplication to any extent
 unrar
 unzip
 p7zip
+zpaq
 
 # File viewers
 coolreader  # Epub, fb2
@@ -704,3 +705,12 @@ ruby-nokogiri
 # gthumb # Remove this DBUS thumbnailing tool
 # pax # Had temporarily installed when writing a tar patch
 # pianobar # Pandora (random radio) client
+
+# New
+bwm-ng # Bandwidth monitoring tool. Grabbed to repro a bug I reported in it
+
+# Tried to generate kifu for an SGF
+#perl-cpan meta
+#perlyaml
+#sgfutils
+github-cli # Required for 'project' CLI
