@@ -28,6 +28,9 @@ tmux
 vim
 wget
 zsh
+cronie # Provides /etc/cron.daily etc
+nullmailer # Cron should be able to set MAILTO= a non-local address
+inetutils # Provides 'hostname' command
 
 # X Windows
 # xorg selected drivers. installed explcitly as a non-interactive way to set options.
@@ -38,21 +41,38 @@ ttf-dejavu
 xorg-xinit
 xterm
 *xorg            # Involves selecting drivers. I picked everything nvidia, plus dejavu fonts
+arandr # Adjust screen resolution
 
 # Window manager
 awesome
 vicious
 wmname          # Fake being a different WM for compatibility with some programs. Sourced in profile.
+xflux
 
 # Games
 +multimc-bin
+jre8-openjdk # Needed for minecraft modpacks
 
 # Steam games
 steam
 +steam-fonts
 
+# Chat - discord
+discord
+discover-overlay
+
 # Reproducible distro
 arch-install-scripts    # arch-chroot and pacstrap
+
+# Video
+mediainfo # Used to log video lengths
+mpv
+alsa-utils
+smbclient # Watch germinate videos
+youtube-dl
+
+# Web browsing
+firefox
 
 #duplicity # rdiffdir
 #rdiff-backup
