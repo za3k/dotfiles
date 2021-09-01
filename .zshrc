@@ -16,11 +16,12 @@ mkdir -p $(dirname $HISTFILE)
 
 # == Prompt
 hostname=`cat /etc/hostname`
+export RPROMPT="%(?,%F{green}:%),%F{yellow}%? %F{red}:()%f"
+export PS1="%~ "
 case "${hostname}" in
   rosemary|tarragon)
-    export PS1="%~ %# "
     ;;
   *)
-    export PS1="%m:%~ %# "
+    export PS1="%m:$PS1"
     ;;
 esac
