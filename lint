@@ -55,6 +55,7 @@ RECURSIVE_DIRS = [".config", ".local/share"]
 STATE_GRANDFATHERS = [
     ".cache", # should always stay here
     ".local", # should always stay here but might make sense to look inside?
+    ".projects", # Will be handled separately
 
     # Even though this list will become long, it causes me to decide "yes, this should be in dotfiles" vs "no, it should not"--so keep maintaining. Don't try too hard to move to XDG though.
     ".pki", # probably made by the 'nss' library. should respect XDG but doesn't
