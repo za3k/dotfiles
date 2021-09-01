@@ -8,7 +8,7 @@ xscreensaver -nosplash &
 xset b off
 # Computer-specific hardware settings for X windows
 if which dmidecode >/dev/null 2>/dev/null; then
-    system=`sudo -T 1 dmidecode -s system-family 2>/dev/null` # Sudo prompting for a password causes X start to hang
+    system=`sudo dmidecode -s system-family 2>/dev/null` # Sudo prompting for a password causes X start to hang
     case "$system" in
         "ThinkPad T460s")
             # T460s stuff
