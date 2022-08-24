@@ -51,7 +51,7 @@ alias archwiki="$BROWSER /usr/share/doc/arch-wiki/html/index.html"
 # zsh doesn't allow ? in a command
 alias psp="ps aux | grep"
 alias upp="ping 8.8.8.8"
-alias sleepp="\summarize_activity 30 10 0 0 SLEEP1"
+alias sleepp="\summarize_activity --mode SLEEP1 0"
 
 #alias gs="git status"
 alias gd="git diff"
@@ -80,6 +80,7 @@ alias ngrok='ngrok -authtoken Pg+Qh8UnSk2mOTmBXGjJ'
 alias skype="apulse32 skype"
 alias op="ssh minecraft@xenu -t tmux attach"
 alias omegle="ssh -D 8080 deadtree -N & chromium --proxy-server=socks://127.0.0.1:8080"
+alias omegle2="ssh -D 8080 tilde -N & chromium --proxy-server=socks://127.0.0.1:8080"
 alias localhosts='nmap -sL 192.168.1.0/24 --dns-servers 192.168.1.1 | grep -v "for 192" | sed "s/Nmap scan report for //"'
 alias watch-remote="/var/local/media-player/watch.sh"
 alias note="cat | log journal"
@@ -87,7 +88,6 @@ alias remote="rdesktop 192.168.1.34 -u free -p boobsmake1hard -f -r clipboard:CL
 alias rremote="rdesktop xenu.za3k.com:13398 -u free -p boobsmake1hard -f -r clipboard:CLIPBOARD"
 alias latest="ls -Art | tail -n10"
 alias journal='$EDITOR ~/documents/journal/`\date "+%Y-%m-%d"`.txt'
-alias summarize_activity="summarize_activity 30 10"
 alias slay="wine c:/Program\ Files\ \(x86\)/Slay/Slay.exe"
 alias watch-land=watch-lan
 alias timelog="python3 ~/journal-print/timelog.py | grep -P -i"
@@ -99,3 +99,9 @@ alias less="less -R"
 alias print="ssh invent lp"
 alias print-duplex="ssh invent lp -o sides=two-sided-long-edge -o media=letter"
 alias ifmud="telnet ifmud.port4000.com 4000"
+alias push="git push origin master"
+alias ***REMOVED***="~/***REMOVED******REMOVED***/***REMOVED******REMOVED***"
+alias geminate=germinate
+alias geminate-lan=germinate-lan
+alias rot13="tr n-za-m a-z"
+alias view-movies="grep 'actually watched' </var/log/forever/watch.log | less"
