@@ -14,6 +14,11 @@ set showmatch
 set backspace=indent,eol,start
 "Always show the row, column
 set ruler
+"Avoid tty irritatingness
+set visualbell
+
+"Useful for TODO
+:command! RandomLine execute 'normal! '.(system('/bin/bash -c "echo -n $RANDOM"') % line('$')).'G'
 
 set encoding=utf-8
 
@@ -78,7 +83,8 @@ set bri
 "Add a command to print index cards
 function LeafPrintLetter()
     call LeafYank()
-    call system('iconv -f utf-8 -t iso-8859-1//TRANSLIT | enscript -X 88591 -fDejaVuSansMono@9 -FDejaVuSansMono@9 --no-header --margins=72:0:72:72 -M Letter -o - | /usr/bin/print', @0)
+"    call system('iconv -f utf-8 -t iso-8859-1//TRANSLIT | enscript -X 88591 -fDejaVuSansMono@9 -FDejaVuSansMono@9 --no-header --margins=72:0:72:72 -M Letter -o - | /usr/bin/print', @0)
+    call system('iconv -f utf-8 -t iso-8859-1//TRANSLIT | enscript -X 88591 -fDejaVuSansMono@9 -FDejaVuSansMono@9 --no-header --margins=72:0:72:72 -M Letter -o - | lp', @0)
 endfunction
 function LeafPrintIndex()
     call LeafYank()
