@@ -1,3 +1,6 @@
+# Record all interactive shell sessions
+if [[ -f /bin/record-shell && -z "$RECORDING" && $- == *i* ]]; then if shopt -q login_shell; then :; else exec /bin/record-shell; fi; fi
+
 # Non-bash-specific stuff
 if [ -e ~/.shellrc ]; then
     . ~/.shellrc
@@ -49,3 +52,5 @@ PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER \
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+# Visual bell
+set bell-style=visual
