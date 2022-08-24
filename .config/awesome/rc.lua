@@ -45,6 +45,7 @@ beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 terminal = "xterm"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
+hostname = os.getenv("HOSTNAME") or os.getenv("HOST") or io.popen("hostname"):read()
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -129,10 +130,15 @@ powerformat = function (widget, args)
     return ("<span foreground=\"grey\"> %02d</span>%%"):format(args[2])
   end
 end
-powerwidget = wibox.widget.textbox()
-vicious.register(powerwidget, vicious.widgets.bat, powerformat, 61, "BAT0")
-powerwidget2 = wibox.widget.textbox()
-vicious.register(powerwidget2, vicious.widgets.bat, powerformat, 61, "BAT1")
+if hostname == "rosemary" then
+    powerwidget = wibox.widget.textbox()
+    vicious.register(powerwidget, vicious.widgets.bat, powerformat, 61, "BAT0")
+    powerwidget2 = wibox.widget.textbox()
+    vicious.register(powerwidget2, vicious.widgets.bat, powerformat, 61, "BAT1")
+else
+    powerwidget = wibox.widget.textbox()
+    vicious.register(powerwidget, vicious.widgets.bat, "H:" .. hostname, 61, "BAT0")
+end
 
 --datewidget = wibox.widget.textbox()
 --vicious.register(datewidget, vicious.widgets.date, "$2", 10, "Bfjkd")
