@@ -1,2 +1,2 @@
-PATH=$PATH:~/bin:~/script
+PATH=$PATH:~/bin:~/script:/var/local/media-player
 export IPFS_PATH=/ipfs
