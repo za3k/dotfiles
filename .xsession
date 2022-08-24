@@ -1,7 +1,7 @@
 # X style settings go in .Xresources
 xrdb -merge .Xresources
 # xflux turns off blue light at night. The zipcode is for longitude only.
-which xflux >/dev/null 2>/dev/null && xflux -z 94702 &
+which xflux >/dev/null 2>/dev/null && xflux -z 45230 &
 # Screen locking
 xscreensaver -nosplash &
 # No system bell, please
@@ -17,7 +17,8 @@ if which dmidecode >/dev/null 2>/dev/null; then
             synclient PalmDetect=1
             # Set mount sensitivity (acceleration)
             xinput --set-prop "SynPS/2 Synaptics TouchPad" 'Device Enabled' 0
-            xinput --set-prop "TPPS/2 IBM TrackPoint" 'libinput Accel Speed' -0.2
+            #xinput --set-prop "TPPS/2 IBM TrackPoint" 'libinput Accel Speed' -0.2
+            xinput --set-prop "TPPS/2 IBM TrackPoint" 'libinput Accel Speed' 0.2
             ;;
         *)
             echo "Unknown computer (edit .xinitrc): $system" >&2
@@ -27,6 +28,17 @@ if which dmidecode >/dev/null 2>/dev/null; then
     # xinput --set-prop 11 'Device Enabled' 0 # 11 is the trackpad
     # xinput --set-prop 12 'libinput Accel Speed' -0.15 # 12 is the trackpoint
 fi
+
+case "$HOSTNAME" in
+  rosemary)
+    if which habit-tracker >/dev/null 2>/dev/null; then
+        if which xterm >/dev/null 2>/dev/null; then
+            xterm habit-tracker &
+        fi
+    fi
+    ;;
+esac
+
 # Caps lock should be escape
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 # Unmute mic + speaker
