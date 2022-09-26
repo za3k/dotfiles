@@ -41,6 +41,11 @@ esac
 
 # Caps lock should be escape
 xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
+# Add right alt as compose (alt_gr) key
+#xmodmap -e 'remove Mod1 = Alt_R'
+#xmodmap -e 'keysym Alt_R = Multi_key'
+
 # Unmute mic + speaker
 if which amixer >/dev/null 2>/dev/null; then
     amixer sset Headphone unmute 100%

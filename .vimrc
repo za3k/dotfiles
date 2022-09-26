@@ -36,6 +36,9 @@ vnoremap <space> zf
 :nnoremap <F5> "=strftime("%Y-%m-%d %R")<CR>P
 :inoremap <F5> <C-R>=strftime("%Y-%m-%d %R")<CR>
 
+"Parse .cr (crystal) files as ruby
+au BufReadPost,BufNewFile *.cr set ft=ruby
+
 "Python-style folding
 autocmd Syntax python set foldmethod=indent
 autocmd Syntax python normal zR
@@ -112,3 +115,6 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
 let g:ycm_allow_changing_updatetime = 0
 "let g:netrw_dirhistmax=0
+
+:hi SpellBad cterm=underline ctermfg=red ctermbg=NONE
+:hi SpellCap cterm=underline ctermfg=red ctermbg=NONE

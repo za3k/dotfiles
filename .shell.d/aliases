@@ -91,6 +91,7 @@ alias journal='$EDITOR ~/documents/journal/`\date "+%Y-%m-%d"`.txt'
 alias slay="wine c:/Program\ Files\ \(x86\)/Slay/Slay.exe"
 alias watch-land=watch-lan
 alias timelog="python3 ~/journal-print/timelog.py | grep -P -i"
+alias timelog-graph="python3 ~/journal-print/timelog-graph.py"
 alias ctimelog="python3 ~/journal-print/timelog.py | grep -P -i -c"
 alias ftimelog="python3 ~/journal-print/timelog.py | fgrep -i"
 alias units="units -H ''"
@@ -100,8 +101,10 @@ alias print="ssh invent lp"
 alias print-duplex="ssh invent lp -o sides=two-sided-long-edge -o media=letter"
 alias ifmud="telnet ifmud.port4000.com 4000"
 alias push="git push origin master"
-alias ***REMOVED***="~/***REMOVED******REMOVED***/***REMOVED******REMOVED***"
 alias geminate=germinate
 alias geminate-lan=germinate-lan
 alias rot13="tr n-za-m a-z"
-alias view-movies="grep 'actually watched' </var/log/forever/watch.log | less"
+alias view-movies="grep 'actually watched' </var/log/forever/watch.log | sed -e 's^Stopping /media/germinate/^^' | less +G"
+alias lp-double="lp -o sides=two-sided-long-edge -o media=letter"
+alias last-movie="grep 'actually watched' </var/log/forever/watch.log | sed -e 's^Stopping /media/germinate/^^' | grep"
+alias send2tmp="share"

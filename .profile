@@ -1,5 +1,7 @@
 export XAUTHORITY=/tmp/XAuthority
 
+[ -f /etc/profile.d/debuginfod.sh ] && . /etc/profile.d/debuginfod.sh
+
 hostname=`cat /etc/hostname`
 case "$hostname" in
     rosemary)

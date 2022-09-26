@@ -1,0 +1,5 @@
+share() { 
+  scp "$1" germinate:/var/www/public/pub/tmp/. 
+  filename=`basename "$1"`
+  echo "https://germinate.za3k.com/pub/tmp/$filename"
+}
