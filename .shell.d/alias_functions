@@ -1,28 +1,37 @@
 share() { 
   remote_dir="germinate:/var/www/public/pub/tmp"
-  if [ $# == 0 ]; then
-    case `basename "$SHELL"` in
-      bash)
+  if [ $# = 0 ]; then
+    # First figure out the command
+    case $SHELL in
+      */bash)
        command=`history 1 | cut -d' ' -f4-`
        ;;
-      zsh)
+      */zsh)
+       command=`history -1 | cut -c8-`
        ;;
       *)
-       echo "Unsupported shell: $SHELL" >&2
+       echo "Unsupported shell: $0" >&2
        command="???" # Fall back to output without the header
        ;;
     esac
-
     command=`echo "$command" | sed -E "s/\| ?share$//"`
+
+    # Make a tmpfile
     out=`mktemp /tmp/paste.XXXXXXXX.txt`
     chmod 644 $out
-    echo "$ $command" >>$out
+
+    # Populate the file
+    if [ command != "???" ]; then
+      echo "$ $command" >>$out
+    fi
     cat >>$out
-    scp "$out" "${remote_dir}/."
+
+    # Sync the file
+    scp -q "$out" "${remote_dir}/."
     rm $out
     filename=`basename "$out"`
-  elif [ $# == 1]; then
-    scp "$1" "${remote_dir}/." 
+  elif [ $# = 1]; then
+    scp -q "$1" "${remote_dir}/." 
     filename=`basename "$1"`
   else
     echo "Usage:          share <FILE>" >&2
