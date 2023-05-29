@@ -17,4 +17,5 @@ case "$hostname" in
         ;;
 esac
 
-[ -x ~/.projects/za3kstrap/za3kstrap ] && ~/.projects/za3kstrap/za3kstrap lint-packages
+# Skip until it's done -- on pause in 2022
+#[ -x ~/.projects/za3kstrap/za3kstrap ] && ~/.projects/za3kstrap/za3kstrap lint-packages

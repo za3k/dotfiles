@@ -76,7 +76,6 @@ alias newgroup="ssh nntp@deadtree sudo snnewgroup"
 alias git_backup_summary='find-git-repos ~ | while read REPO; do echo "$(git-repo-remotes "${REPO}")"; done | sort | uniq -c'
 alias git_alarm='find-git-repos ~ | while read REPO; do echo "${REPO} $(git-repo-remotes "${REPO}")"; done | egrep -i "NONE|unknown|freethenation|bitbucket"'
 alias qr_read='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so zbarcam /dev/video0'
-alias ngrok='ngrok -authtoken Pg+Qh8UnSk2mOTmBXGjJ'
 alias skype="apulse32 skype"
 alias op="ssh minecraft@xenu -t tmux attach"
 alias omegle="ssh -D 8080 deadtree -N & chromium --proxy-server=socks://127.0.0.1:8080"
@@ -97,14 +96,18 @@ alias ftimelog="python3 ~/journal-print/timelog.py | fgrep -i"
 alias units="units -H ''"
 alias transcribe="cd ~/log-book-03 && ~/transcribe/transcribe.py &"
 alias less="less -R"
-alias print="ssh invent lp"
-alias print-duplex="ssh invent lp -o sides=two-sided-long-edge -o media=letter"
+alias print="lp"
+alias print-duplex="lp -o sides=two-sided-long-edge -o media=letter"
 alias ifmud="telnet ifmud.port4000.com 4000"
 alias push="git push origin master"
 alias geminate=germinate
 alias geminate-lan=germinate-lan
-alias rot13="tr n-za-m a-z"
+alias rot13="tr n-za-mN-ZA-M a-zA-Z"
 alias view-movies="grep 'actually watched' </var/log/forever/watch.log | sed -e 's^Stopping /media/germinate/^^' | less +G"
 alias lp-double="lp -o sides=two-sided-long-edge -o media=letter"
 alias last-movie="grep 'actually watched' </var/log/forever/watch.log | sed -e 's^Stopping /media/germinate/^^' | grep"
 alias send2tmp="share"
+alias datalog="quiz ~/physicalish_documents/daily_log.csv"
+alias clip='xsel | ssh clipboard-partner DISPLAY=:0 XAUTHORITY=/tmp/XAuthority xsel'
+alias markdown='markdown -S'
+alias radio="ssh juice radio"

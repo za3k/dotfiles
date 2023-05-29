@@ -1,5 +1,37 @@
 share() { 
-  scp "$1" germinate:/var/www/public/pub/tmp/. 
-  filename=`basename "$1"`
+  remote_dir="germinate:/var/www/public/pub/tmp"
+  if [ $# == 0 ]; then
+    case `basename "$SHELL"` in
+      bash)
+       command=`history 1 | cut -d' ' -f4-`
+       ;;
+      zsh)
+       ;;
+      *)
+       echo "Unsupported shell: $SHELL" >&2
+       command="???" # Fall back to output without the header
+       ;;
+    esac
+
+    command=`echo "$command" | sed -E "s/\| ?share$//"`
+    out=`mktemp /tmp/paste.XXXXXXXX.txt`
+    chmod 644 $out
+    echo "$ $command" >>$out
+    cat >>$out
+    scp "$out" "${remote_dir}/."
+    rm $out
+    filename=`basename "$out"`
+  elif [ $# == 1]; then
+    scp "$1" "${remote_dir}/." 
+    filename=`basename "$1"`
+  else
+    echo "Usage:          share <FILE>" >&2
+    echo " COMMAND args | share" >&2
+    return 1
+  fi
+
   echo "https://germinate.za3k.com/pub/tmp/$filename"
+  echo "https://germinate.za3k.com/pub/tmp/$filename" | nohup xclip -in -sel c >/dev/null 2>&1
+  echo "https://germinate.za3k.com/pub/tmp/$filename" | nohup xclip -in -sel s >/dev/null 2>&1
+  echo "https://germinate.za3k.com/pub/tmp/$filename" | nohup xclip -in -sel p >/dev/null 2>&1
 }

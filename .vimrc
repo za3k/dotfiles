@@ -118,3 +118,6 @@ let g:ycm_allow_changing_updatetime = 0
 
 :hi SpellBad cterm=underline ctermfg=red ctermbg=NONE
 :hi SpellCap cterm=underline ctermfg=red ctermbg=NONE
+
+"The macro 'a' can be replayed with ,
+nnoremap , @a

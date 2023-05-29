@@ -8,8 +8,8 @@ fi
 
 # == Bash completion
 # enable programmable completion features (you don't need to enable this, if it's already enabled in /etc/bash.bashrc and /etc/profile sources /etc/bash.bashrc).
-if [ -e /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+if [ -e /usr/share/bash-completion/bash_completion ] && ! shopt -oq posix; then
+    . /usr/share/bash-completion/bash_completion
 fi
 
 # == Record Script
