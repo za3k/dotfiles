@@ -57,10 +57,9 @@ alias sleepp="\summarize_activity 30 10 0 0 SLEEP1"
 alias gd="git diff"
 alias bitbucket="git clone git@bitbucket.org\\"
 alias jx="java -jar /usr/lib/j/bin/j.jar"
-alias notify="$WHICHVIM -S ~/.vim/sessions/notify_session"
 alias twilio="sshfs twilio@deadtree:notify ~/remote_notify; subl ~/remote_notify"
 alias hhc="mplayer http://media.cyberleo.net:8004/hhc"
-alias leomusic="mplayer http://media.cyberleo.net:8004/music"
+alias leomusic="mpv --stream-record=/var/music/leo-`\date +%Y-%m-%d-%T`.mp3 http://media.cyberleo.net:8004/hhc"
 alias creategh=create-github-repo
 alias :wq="echo \"That doesn't work.  This isn't vim.\""
 alias :q="echo \"That doesn't work.  This isn't vim.\""
@@ -76,7 +75,6 @@ alias newgroup="ssh nntp@deadtree sudo snnewgroup"
 alias git_backup_summary='find-git-repos ~ | while read REPO; do echo "$(git-repo-remotes "${REPO}")"; done | sort | uniq -c'
 alias git_alarm='find-git-repos ~ | while read REPO; do echo "${REPO} $(git-repo-remotes "${REPO}")"; done | egrep -i "NONE|unknown|freethenation|bitbucket"'
 alias qr_read='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so zbarcam /dev/video0'
-alias ngrok='ngrok -authtoken Pg+Qh8UnSk2mOTmBXGjJ'
 alias skype="apulse32 skype"
 alias op="ssh minecraft@xenu -t tmux attach"
 alias omegle="ssh -D 8080 deadtree -N & chromium --proxy-server=socks://127.0.0.1:8080"
@@ -99,3 +97,5 @@ alias less="less -R"
 alias print="ssh invent lp"
 alias print-duplex="ssh invent lp -o sides=two-sided-long-edge -o media=letter"
 alias ifmud="telnet ifmud.port4000.com 4000"
+alias blank="sudo xset -display :0 dpms force off"
+alias clip='xsel -o >/dev/null | ssh clipboard-partner DISPLAY=:0 XAUTHORITY=/tmp/XAuthority xsel'

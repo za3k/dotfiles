@@ -1,13 +1,19 @@
 # The rule here is that these should be STATEFUL (regularly changed by the computer) and can be safely deleted or replaced
 # Rsync format: file is parsed from top to bottom, first match wins. Remember a directory has to match for its children to even be considered.
 
++ /boot
+
 # Deliberately not copied
 # 67G
 /var/steam
+/var/music
 
 # Log directories
 # 25M
-/var/log
++ /var
++ /var/log
++ /var/log/forever
+- /var/log/*
 
 # Cache directories
 # 87M
@@ -21,6 +27,7 @@
 #/root/tmp
 /tmp
 /var/tmp
+/home/zachary/online-go.com-2023-04-24
 
 # Shadow files
 /etc/*-

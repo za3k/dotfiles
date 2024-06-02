@@ -12,6 +12,8 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 
+require("awful.remote")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -107,6 +109,11 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
+-- Store the hostname, so we can have a different display per computer
+local p = io.popen("hostname", 'r')
+local hostname = p:read('*a')
+p:close()
+
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock("<span foreground=\"gray\">%a %F</span>, <span foreground=\"lightgreen\">%I:%M %p</span> ")
@@ -130,9 +137,11 @@ powerformat = function (widget, args)
   end
 end
 powerwidget = wibox.widget.textbox()
-vicious.register(powerwidget, vicious.widgets.bat, powerformat, 61, "BAT0")
 powerwidget2 = wibox.widget.textbox()
-vicious.register(powerwidget2, vicious.widgets.bat, powerformat, 61, "BAT1")
+if hostname == "tarragon" or hostname == "rosemary" then
+    vicious.register(powerwidget, vicious.widgets.bat, powerformat, 61, "BAT0")
+    vicious.register(powerwidget2, vicious.widgets.bat, powerformat, 61, "BAT1")
+end
 
 --datewidget = wibox.widget.textbox()
 --vicious.register(datewidget, vicious.widgets.date, "$2", 10, "Bfjkd")
@@ -141,12 +150,14 @@ vicious.register(powerwidget2, vicious.widgets.bat, powerformat, 61, "BAT1")
 myinternet = wibox.widget.textbox()
 internetcommand = "grep -q up ping /var/tmp/internet_up && echo ' <span foreground=\"gray\">I+</span>' || echo ' <span foreground=\"red\">I-</span>'"
 internettimer = timer({ timeout = 2 })
+if hostname == "tarragon" or hostname == "rosemary" then
 internettimer:connect_signal("timeout", function() 
     local f = io.popen(internetcommand, 'r')
     local text = f:read('*a')
     f:close()
     myinternet:set_markup(text) 
 end)
+end
 internettimer:start()
 
 -- Create a wibox for each screen and add it
@@ -392,6 +403,10 @@ clientkeys = awful.util.table.join(
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
+    awful.key({ modkey, "Control" }, "a",  
+        function (c)
+            c.ontop = not c.ontop
+        end),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,

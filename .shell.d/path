@@ -1,2 +1,2 @@
-PATH=$PATH:~/bin:~/script
+PATH=$PATH:~/.local/bin:~/bin:~/script:~/.projects/short-programs
 export IPFS_PATH=/ipfs
