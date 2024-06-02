@@ -12,7 +12,7 @@ esac
 case "$hostname" in
     rosemary)
         if [[ '/dev/tty1' = $(/usr/bin/tty) ]]; then
-            which startx >/dev/null 2>/dev/null && exec startx
+            which startx >/dev/null 2>/dev/null && exec startx &>/dev/null
         fi
         ;;
 esac

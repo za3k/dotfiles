@@ -30,8 +30,8 @@ share() {
     scp -q "$out" "${remote_dir}/."
     rm $out
     filename=`basename "$out"`
-  elif [ $# = 1]; then
-    scp -q "$1" "${remote_dir}/." 
+  elif [ $# = 1 ]; then
+    rsync -a "$1" "${remote_dir}/." 
     filename=`basename "$1"`
   else
     echo "Usage:          share <FILE>" >&2
@@ -43,4 +43,5 @@ share() {
   echo "https://germinate.za3k.com/pub/tmp/$filename" | nohup xclip -in -sel c >/dev/null 2>&1
   echo "https://germinate.za3k.com/pub/tmp/$filename" | nohup xclip -in -sel s >/dev/null 2>&1
   echo "https://germinate.za3k.com/pub/tmp/$filename" | nohup xclip -in -sel p >/dev/null 2>&1
+  clip
 }

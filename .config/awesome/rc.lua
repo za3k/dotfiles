@@ -139,7 +139,7 @@ if hostname == "rosemary" then
     vicious.register(powerwidget2, vicious.widgets.bat, powerformat, 61, "BAT1")
 else
     powerwidget = wibox.widget.textbox()
-    vicious.register(powerwidget, vicious.widgets.bat, "H:" .. hostname, 61, "BAT0")
+    vicious.register(powerwidget, vicious.widgets.bat, powerformat, 61, "BAT0")
 end
 
 --datewidget = wibox.widget.textbox()
