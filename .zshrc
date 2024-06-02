@@ -47,6 +47,8 @@ function precmd() {
 }
 
 hostname=`cat /etc/hostname`
+export RPROMPT="%(?,%F{green}:%),%F{yellow}%? %F{red}:()%f"
+export PS1="%~ "
 case "${hostname}" in
   rosemary|tarragon)
     export PS1="%~ $"

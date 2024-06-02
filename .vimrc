@@ -14,6 +14,11 @@ set showmatch
 set backspace=indent,eol,start
 "Always show the row, column
 set ruler
+"Avoid tty irritatingness
+set visualbell
+
+"Useful for TODO
+:command! RandomLine execute 'normal! '.(system('/bin/bash -c "echo -n $RANDOM"') % line('$')).'G'
 
 set encoding=utf-8
 
@@ -30,6 +35,9 @@ vnoremap <space> zf
 "Press <F5> in insert or normal mode to insert the datetime
 :nnoremap <F5> "=strftime("%Y-%m-%d %R")<CR>P
 :inoremap <F5> <C-R>=strftime("%Y-%m-%d %R")<CR>
+
+"Parse .cr (crystal) files as ruby
+au BufReadPost,BufNewFile *.cr set ft=ruby
 
 "Python-style folding
 autocmd Syntax python set foldmethod=indent
@@ -78,7 +86,8 @@ set bri
 "Add a command to print index cards
 function LeafPrintLetter()
     call LeafYank()
-    call system('iconv -f utf-8 -t iso-8859-1//TRANSLIT | enscript -X 88591 -fDejaVuSansMono@9 -FDejaVuSansMono@9 --no-header --margins=72:0:72:72 -M Letter -o - | /usr/bin/print', @0)
+"    call system('iconv -f utf-8 -t iso-8859-1//TRANSLIT | enscript -X 88591 -fDejaVuSansMono@9 -FDejaVuSansMono@9 --no-header --margins=72:0:72:72 -M Letter -o - | /usr/bin/print', @0)
+    call system('iconv -f utf-8 -t iso-8859-1//TRANSLIT | enscript -X 88591 -fDejaVuSansMono@9 -FDejaVuSansMono@9 --no-header --margins=72:0:72:72 -M Letter -o - | lp', @0)
 endfunction
 function LeafPrintIndex()
     call LeafYank()
@@ -106,3 +115,9 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
 let g:ycm_allow_changing_updatetime = 0
 "let g:netrw_dirhistmax=0
+
+:hi SpellBad cterm=underline ctermfg=red ctermbg=NONE
+:hi SpellCap cterm=underline ctermfg=red ctermbg=NONE
+
+"The macro 'a' can be replayed with ,
+nnoremap , @a

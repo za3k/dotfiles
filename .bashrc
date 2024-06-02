@@ -1,3 +1,6 @@
+# Record all interactive shell sessions
+if [[ -f /bin/record-shell && -z "$RECORDING" && $- == *i* ]]; then if shopt -q login_shell; then :; else exec /bin/record-shell; fi; fi
+
 # Non-bash-specific stuff
 if [ -e ~/.shellrc ]; then
     . ~/.shellrc
@@ -5,8 +8,8 @@ fi
 
 # == Bash completion
 # enable programmable completion features (you don't need to enable this, if it's already enabled in /etc/bash.bashrc and /etc/profile sources /etc/bash.bashrc).
-if [ -e /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+if [ -e /usr/share/bash-completion/bash_completion ] && ! shopt -oq posix; then
+    . /usr/share/bash-completion/bash_completion
 fi
 
 # == Record Script
@@ -50,3 +53,5 @@ PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER \
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# Visual bell
+set bell-style=visual

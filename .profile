@@ -1,5 +1,7 @@
 export XAUTHORITY=/tmp/XAuthority
 
+[ -f /etc/profile.d/debuginfod.sh ] && . /etc/profile.d/debuginfod.sh
+
 hostname=`cat /etc/hostname`
 case "$hostname" in
     rosemary)
@@ -10,9 +12,18 @@ esac
 case "$hostname" in
     rosemary)
         if [[ '/dev/tty1' = $(/usr/bin/tty) ]]; then
-            which startx >/dev/null 2>/dev/null && exec startx
+            which startx >/dev/null 2>/dev/null && exec startx &>/dev/null
         fi
         ;;
 esac
 
-[ -x ~/.projects/za3kstrap/za3kstrap ] && ~/.projects/za3kstrap/za3kstrap lint-packages
+case "$hostname" in
+    rosemary)
+        : # Skip until it's done -- on pause in 2022
+        ;;
+
+    juice)
+        [ -x ~/.projects/za3kstrap/za3kstrap ] && ~/.projects/za3kstrap/za3kstrap lint-packages
+
+        ;;
+esac
