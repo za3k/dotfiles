@@ -17,6 +17,7 @@ germinate zachary doubledore
 germinate zachary esp8266
 germinate zachary fdb
 germinate zachary flowy
+germinate zachary ha3k-24-stuff
 germinate zachary idle
 germinate zachary journal
 germinate zachary journal-print
@@ -124,6 +125,7 @@ github za3k ding
 github za3k diskprices-scrape
 github za3k doodlerpg
 github za3k dotfiles
+github za3k dragbox
 github za3k ec2-cli
 github za3k electrocats
 github za3k export-chrome-bookmarks
@@ -132,6 +134,23 @@ github za3k github-backup
 github za3k git-split
 github za3k google-count
 github za3k gtd-chart
+github za3k ha3k-01-perquackey
+github za3k ha3k-02-raytracer
+github za3k ha3k-06-raytracer
+github za3k ha3k-07-doodle-alchemy
+github za3k ha3k-08-receipt
+github za3k ha3k-10-typewriter
+github za3k ha3k-11-raytracer-rain
+github za3k ha3k-12-screensaver
+github za3k ha3k-13-blueprint
+github za3k ha3k-14-synth
+github za3k ha3k-18-ai-grabbag
+github za3k ha3k-20-lockpick
+github za3k ha3k-22-pcb
+github za3k ha3k-23-timelapse
+github za3k ha3k-28-sitcom
+github za3k ha3k-29-speedread
+github za3k ha3k-30-musicofspheres
 github za3k keystroked
 github za3k logkeys
 github za3k moreorcs
@@ -147,6 +166,7 @@ github za3k rust_mentoring
 github za3k scan-organizer
 github za3k selfridge-conjecture-experiments
 github za3k short-programs
+github za3k sscheme
 github za3k status-dash-leds
 github za3k stpetersburg
 github za3k transcribe
