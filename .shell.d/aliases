@@ -33,8 +33,6 @@ alias arch_packages="pacman -Qie | awk '/^Name/ {pkg=\$3} /Size/ {print \$4\$5,p
 alias package_backup="comm -23 <(pacman -Qqe|sort) <(pacman -Qqg base base-devel|sort)"
 alias clocky="watch --interval=1 --no-title date +%c"
 alias banner="banner -Cl"
-alias minecraft="java -Xms1G -Xmx2G -jar minecraft/minecraft.jar"
-alias minecraftserver="java -Xmx1024M -Xms1024M -jar ~/minecraft/minecraft_server.jar nogui"
 alias t=task
 alias gmail="$BROWSER gmail.com"
 alias vboxme="sudo modprobe -a vboxguest vboxsf vboxvideo"
@@ -113,7 +111,7 @@ alias send2tmp="share"
 alias datalog="quiz ~/physicalish_documents/daily_log.csv"
 alias clip='xsel >/dev/null | ssh clipboard-partner DISPLAY=:0 XAUTHORITY=/tmp/XAuthority xsel'
 alias markdown='markdown -S'
-alias radio="ssh juice radio"
+[ -e /usr/bin/radio ] || alias radio="ssh juice radio"
 alias utc="date --utc"
 alias sc-to-csv="sc-im --nocurses --export_csv --quit_afterload"
 alias ssshh="ssh juice amixer set Master toggle"
