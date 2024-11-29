@@ -7,6 +7,13 @@ fi
 bindkey -e # Emacs mode
 setopt interactivecomments
 
+# Autocomplete
+if [ -d /usr/share/zsh/site-functions ]; then
+  export FPATH=/usr/share/zsh/site-functions:$FPATH
+  autoload -Uz compinit
+  compinit
+fi
+
 # == History
 export HISTSIZE=10000000
 export SAVEHIST=$HISTSIZE
