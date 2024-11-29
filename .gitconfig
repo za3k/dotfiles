@@ -10,3 +10,8 @@
     smtpServer = smtp.za3k.com
     smtpUser = za3k@za3k.com
     smtpServerPort = 587
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
