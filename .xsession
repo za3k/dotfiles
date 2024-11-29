@@ -33,7 +33,8 @@ case "$HOSTNAME" in
   rosemary)
     if [ -x /home/zachary/.projects/short-programs/habit-tracker ]; then
         if which xterm >/dev/null 2>/dev/null; then
-            xterm /home/zachary/.projects/short-programs/habit-tracker &
+            #xterm /home/zachary/.projects/short-programs/habit-tracker &
+            :
         fi
     fi
     ;;
