@@ -17,5 +17,13 @@ case "$hostname" in
         ;;
 esac
 
-# Skip until it's done -- on pause in 2022
-#[ -x ~/.projects/za3kstrap/za3kstrap ] && ~/.projects/za3kstrap/za3kstrap lint-packages
+case "$hostname" in
+    rosemary)
+        : # Skip until it's done -- on pause in 2022
+        ;;
+
+    juice)
+        [ -x ~/.projects/za3kstrap/za3kstrap ] && ~/.projects/za3kstrap/za3kstrap lint-packages
+
+        ;;
+esac

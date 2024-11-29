@@ -8,7 +8,7 @@ set softtabstop=4 "4 spaces when tab is pressed
 set smarttab "Indent instead of tab at start of line
 set expandtab "Spaces instead of tabs always
 set shiftround "Round spaces to nearest shiftwidth module
-"Not sure.
+"Not sure. Highlight regex matches?
 set showmatch
 "Backspace goes back one indent
 set backspace=indent,eol,start
