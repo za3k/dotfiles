@@ -389,7 +389,7 @@ globalkeys = awful.util.table.join(
         awful.util.spawn("amixer set Master 9%-") end,
 	   {description = "Lower the volume 9%", group="volume"}),
     awful.key({ }, "XF86AudioMute", function ()
-       awful.util.spawn("amixer sset Master toggle") end,
+       awful.util.spawn("amixer -D pulse sset Master toggle") end,
 	   {description = "Mute/unmute volume", group="volume"}),
     awful.key({ modkey }, "BackSpace", 
 			  function () awful.util.spawn("xscreensaver-command -lock") end,

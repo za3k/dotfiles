@@ -6,6 +6,7 @@ germinate zachary anthropic
 germinate zachary arbitrage
 germinate zachary arbitrage-projectlocker
 germinate zachary blinkenlight
+germinate zachary blog
 germinate zachary book-comparison
 germinate zachary books
 germinate zachary builddb-python-proto
@@ -84,7 +85,10 @@ github za3k billpay-ios
 github za3k brainfuck
 github za3k busy_beaver
 github za3k buttbot
+github za3k cant-stop
 github za3k colony
+github za3k color-sort
+github za3k connections
 github za3k cookbook
 github za3k day01_homepage
 github za3k day02_link
@@ -122,16 +126,19 @@ github za3k dedent
 github za3k dependencies-online
 github za3k devops
 github za3k ding
+github za3k dirt-slab-fabric-mod
 github za3k diskprices-scrape
 github za3k doodlerpg
 github za3k dotfiles
 github za3k dragbox
 github za3k ec2-cli
 github za3k electrocats
+github za3k esp-wroom-32
 github za3k export-chrome-bookmarks
 github za3k forgetio
 github za3k github-backup
 github za3k git-split
+github za3k go
 github za3k google-count
 github za3k gtd-chart
 github za3k ha3k-01-perquackey
@@ -157,6 +164,7 @@ github za3k moreorcs
 github za3k newlatinbible
 github za3k node-pretty-assert
 github za3k noice
+github za3k no-room-for-error
 github za3k ok-mixnet
 github za3k projects
 github za3k qr-backup
@@ -169,6 +177,8 @@ github za3k short-programs
 github za3k sscheme
 github za3k status-dash-leds
 github za3k stpetersburg
+github za3k sunchart
+github za3k temp-monitor
 github za3k transcribe
 github za3k treemap
 github za3k ultimate-writer
