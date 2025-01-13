@@ -112,7 +112,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- Store the hostname, so we can have a different display per computer
 local p = io.popen("hostname", 'r')
-local hostname = p:read('*a')
+local hostname = p:read('*a'):gsub("\n","")
 p:close()
 
 -- {{{ Wibox
