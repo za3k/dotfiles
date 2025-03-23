@@ -10,6 +10,7 @@ xterm*foreground:  LightBlue
 !xterm*font:     -Misc-Fixed-Medium-R-Normal--20-200-75-75-C-100-ISO10646-1
 !xterm*font:        -misc-fixed-medium-r-normal--18-*-*-*-*-*-iso10646-1
 XTerm*faceName: monospace:size=11
+XTerm.vt100.metaSendsEscape: true
 Xcursor.size: 32
 
 !xterm*iconPixmap: ...
