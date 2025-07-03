@@ -64,3 +64,8 @@ case "${hostname}" in
     export PS1="%m:%1~ $ "
     ;;
 esac
+
+
+# MOVE elsewhere later
+[[ ! -r '/home/zachary/.opam/opam-init/init.zsh' ]] || source '/home/zachary/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+export ANDROID_HOME=/var/local/Android

@@ -11,6 +11,7 @@ germinate zachary book-comparison
 germinate zachary books
 germinate zachary builddb-python-proto
 germinate zachary captcha_images
+germinate zachary chitchat-archiver
 germinate zachary commute
 germinate zachary computercraft
 germinate zachary cryptopals
@@ -51,6 +52,7 @@ germinate zachary qr_printer
 germinate zachary shark-boy
 germinate zachary strong-set
 germinate zachary teensy
+germinate zachary the_dome
 germinate zachary twitter_archiver
 germinate zachary weekly-review
 germinate zachary whois
@@ -66,6 +68,7 @@ github freethenation compcrafthack
 github freethenation HackMonkey
 github freethenation mazes
 github lachesis dc22-badge
+github richardklafter reading-order
 github thingless ddns
 github thingless debian-usb
 github thingless dmx
@@ -158,7 +161,10 @@ github za3k ha3k-23-timelapse
 github za3k ha3k-28-sitcom
 github za3k ha3k-29-speedread
 github za3k ha3k-30-musicofspheres
+github za3k ircpuzzles-solver
 github za3k keystroked
+github za3k little-herbalist
+github za3k logkeys
 github za3k logkeys
 github za3k moreorcs
 github za3k newlatinbible
@@ -166,6 +172,7 @@ github za3k node-pretty-assert
 github za3k noice
 github za3k no-room-for-error
 github za3k ok-mixnet
+github za3k pixel-kitchen
 github za3k projects
 github za3k qr-backup
 github za3k rip-chrome-history
@@ -174,13 +181,17 @@ github za3k rust_mentoring
 github za3k scan-organizer
 github za3k selfridge-conjecture-experiments
 github za3k short-programs
+github za3k sound-forth
+github za3k space-escape
 github za3k sscheme
 github za3k status-dash-leds
 github za3k stpetersburg
 github za3k sunchart
 github za3k temp-monitor
+github za3k text-multiedit
 github za3k transcribe
 github za3k treemap
+github za3k ufo
 github za3k ultimate-writer
 github za3k valhalla-rlvzzq
 github za3k vim-leaves

@@ -4,6 +4,8 @@ export WHICHVIM=vim # preferred vim (vim or gvim)
 export EDITOR=$WHICHVIM
 if [ -n "$DISPLAY" ] && which chromium 2>/dev/null >/dev/null; then
   export BROWSER=chromium
-else
+elif which elinks 2>/dev/null >/dev/null; then
   export BROWSER=elinks
+else
+  export BROWSER=chromium
 fi

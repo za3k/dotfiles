@@ -121,3 +121,12 @@ let g:ycm_allow_changing_updatetime = 0
 
 "The macro 'a' can be replayed with ,
 nnoremap , @a
+
+"Indent guides provided by https://github.com/preservim/vim-indent-guides. Useful for JenRM's "Intention Journalling" system
+let g:indent_guides_enable_on_vim_startup = 1
+
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=grey
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
