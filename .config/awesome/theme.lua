@@ -73,7 +73,18 @@ theme.titlebar_maximized_button_focus_inactive  = "/usr/share/awesome/themes/def
 theme.titlebar_maximized_button_normal_active = "/usr/share/awesome/themes/default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = os.getenv("HOME") .. "/.config/awesome/1x1#000000.jpg"
+-- theme.wallpaper = os.getenv("HOME") .. "/.config/awesome/1x1#000000.jpg"
+
+theme.wpdir = os.getenv("HOME") .. "/.wallpapers/"
+theme.wallpapers = {
+    theme.wpdir .. "left.jpg",
+    theme.wpdir .. "backgrounds-2560x1416/bg2560x1416_" .. os.date("%m-%d") ..
+    ".png",
+    --theme.wpdir .. "right.jpg",
+}
+theme.wallpaper = function(s)
+    return theme.wallpapers[s.index]
+end
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"
