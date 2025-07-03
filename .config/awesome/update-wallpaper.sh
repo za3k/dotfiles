@@ -7,7 +7,9 @@ if [ -f "$WALLPAPER_FILE" ]; then
     echo "
     local gears = require('gears')
     for s in screen do
+        if s.index == 2 then
         gears.wallpaper.maximized('$WALLPAPER_FILE', s, false)
+        end
     end
     " | awesome-client
 fi
