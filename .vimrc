@@ -22,6 +22,8 @@ set visualbell
 
 set encoding=utf-8
 
+"Custom digraphs
+:digraphs mO 8487 "℧, the mho is the unit of electrical conductance
 
 "This splits the window when you type @s for easy reading
 "Doesn't seem to cooperate with indent folding
